@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('header-center')
-	<div>View by</div>
+	<div id="view-by">View by</div>
 	<div><a href="#">Top</a> | <a href="#">New</a></div>
 @stop
 

@@ -25,7 +25,11 @@
 				@yield('header-center')
 			</div>
 			<div class="navbar-right navbar-element">
-				<a href="/users/create">Register</a> | <a href="#">Login</a>
+				@if (isset($data['user']))
+					Hello, {{ $data['user']}} | <a href="/users/logout">Logout</a>
+				@else
+					<a href="/users/new">Register</a> | <a href="/users/login">Login</a>
+				@endif
 			</div>
 		</div>
 

@@ -47,6 +47,7 @@ table {
   width: 90%;
   font-family: 'Cabin', sans-serif; }
 
+/* Header/Navbar */
 .navbar {
   border-bottom: 2px solid #7EC0EE;
   border-radius: 2px;
@@ -74,6 +75,9 @@ table {
 .navbar-center {
   margin-top: 10px; }
 
+#view-by {
+  font-size: 13px; }
+
 /* User Creation/Login Forms */
 .user-form {
   margin: 0 auto;
@@ -91,12 +95,6 @@ table {
 .user-header {
   font-size: 22px; }
 
-.user-error {
-  color: #cc0000;
-  font-size: 12px;
-  float: left;
-  vertical-align: top; }
-
 .user-submit {
   background-color: #4f86b5;
   border-radius: 5px;
@@ -111,5 +109,14 @@ table {
 
 .user-submit:hover {
   background-color: #4778A2; }
+
+.user-error {
+  color: #cc0000;
+  font-size: 12px;
+  float: left;
+  vertical-align: top; }
+
+#login-error {
+  color: #cc0000; }
 
 /*# sourceMappingURL=app.css.map */
