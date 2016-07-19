@@ -1,21 +1,20 @@
 @extends('layout')
 
+@section('header-center')
+	<div>View by</div>
+	<div><a href="#">Top</a> | <a href="#">New</a></div>
+@stop
+
+
 @section('content')
-	<div class="navbar navbar-default">
-		<a class="navbar-brand" href="#">Reddit Clone</a>
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Top<span class="sr-only">(current)</span></a></li>
-			</ul>
-		</div>
-	</div>
+	<div class="time-selector">Links from</div>
 
 	<div>
 		This is the list of posts<br/>
 		{{ $data['time'] }}<br/><br/>
 
 		@foreach ($data['posts'] as $post)		
-			<p>{{ $post->title }}</p>
+			<p><a href="#" class="post-link">{{ $post->title }}</a></p>
 		@endforeach
 		
 	</div>

@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'SubredditsController@home');
+
+Route::get('users/create', 'UsersController@create');
+
+Route::post('users/create', 'UsersController@save');

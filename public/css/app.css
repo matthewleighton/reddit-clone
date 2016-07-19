@@ -1,0 +1,115 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+#wrapper {
+  margin: 0 auto;
+  max-width: 1360px;
+  width: 90%;
+  font-family: 'Cabin', sans-serif; }
+
+.navbar {
+  border-bottom: 2px solid #7EC0EE;
+  border-radius: 2px;
+  display: -ms-flexbox;
+  display: flex;
+  height: 40px;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: stretch;
+  align-content: stretch;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: 20px; }
+
+.navbar-element {
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  margin-top: 25px;
+  margin: 25px 10px 0 10px; }
+
+.navbar-center {
+  margin-top: 10px; }
+
+/* User Creation/Login Forms */
+.user-form {
+  margin: 0 auto;
+  max-width: 500px;
+  width: 50%;
+  text-align: center; }
+  .user-form input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    height: 30px;
+    margin: 10px auto;
+    padding: 6px 12px;
+    width: 90%; }
+
+.user-header {
+  font-size: 22px; }
+
+.user-error {
+  color: #cc0000;
+  font-size: 12px;
+  float: left;
+  vertical-align: top; }
+
+.user-submit {
+  background-color: #4f86b5;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 12px;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  vertical-align: middle; }
+
+.user-submit:hover {
+  background-color: #4778A2; }
+
+/*# sourceMappingURL=app.css.map */
