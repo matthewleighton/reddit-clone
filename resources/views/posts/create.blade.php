@@ -19,17 +19,28 @@
 			
 
 			<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-			<input type="hidden" name="post-type" value="" id="post-type-input">
+
+			<input type="hidden" name="textpost" value="{{ $textpost }}" id="textpost-field">
 
 			
-			<input type="text" name="title" placeholder="Title" value="{{ session('title') }}">
+			<input type="text" name="title" placeholder="Title" value="{{ old('title') }}">
+			<p class="user-error">{{ $errors->first('title') }}</p>
 
-			<input type="text" name="url" placeholder="url" value="{{ session('url') }}" id="link-input" class="post-type-field">
-			<textarea name="text" placeholder="Text" id="text-input" class="post-type-field"></textarea><br/>
+			<div class="post-type-field" id="link-input">
+				<input type="text" name="url" placeholder="url" value="{{ old('url') }}">
+				<p class="user-error">{{ $errors->first('url') }}</p>	
+			</div>
+			
+			<div class="post-type-field" id="text-input">
+				<textarea name="body" placeholder="Text">{{ old('body') }}</textarea><br/>
+				<p class="user-error">{{ $errors->first('body') }}</p>	
+			</div>
+			
 
-			<input type="text" name="subreddit" placeholder="Choose a subreddit" value="{{ session('subreddit') }}">
+			<input type="text" name="subreddit" placeholder="Choose a subreddit" value="{{ old('subreddit') }}">
+			<p class="user-error">{{ $errors->first('subreddit') }}</p><br/>
 
-
+			<br/>
 			<button type="submit" class="user-submit">Submit post</button>
 		</form>
 	</div>

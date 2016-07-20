@@ -97,6 +97,15 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'subreddit' => [
+            'exists' => 'That subreddit does not exist.'
+        ],
+        'url' => [
+            'required_if' => 'The url field is required.'
+        ],
+        'body' => [
+            'required_if' => 'The text field is required'
+        ]
     ],
 
     /*

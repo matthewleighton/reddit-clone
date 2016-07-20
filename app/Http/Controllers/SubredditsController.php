@@ -28,7 +28,7 @@ class SubredditsController extends Controller
 
     	$posts = ['This is a post title', 'This is another post title', 'And a third post title!'];
 
-    	$posts = Post::where('selfpost', '1')->get();
+        $posts = Post::all();
 
     	$data = array(
     		'time' => $time,

@@ -1,15 +1,15 @@
 $(document).ready(function() {
 
 	if ($("#post-creation-form").length) {
-		if (getUrlVars()[0] == 'selfpost') {
+		var textpost = $('#textpost-field').val();
+
+		if (getUrlVars()[0] == 'selfpost' || textpost == '1') {
 			changePostType('text');
 		}
 	}
 
 	// Selecting Post Type
 	var postType = '';
-
-
 
 	$('.post-type-selector').click(function() {
 		postType = $(this).find('p').text();
@@ -20,17 +20,20 @@ $(document).ready(function() {
 		var validPostTypes = ['link', 'text'];
 		var inputId = "#" + postType + "-input";
 		var selectorId = "#" + postType + "-selector"
+		var textpost = postType == 'link' ? 0 : 1;
 		
 		if (validPostTypes.indexOf(postType) < 0) return;
 		if ($(selectorId).hasClass('selected')) return;
 
+		console.log("test?");
+
 		$(".post-type-selector").removeClass('selected');
 		$(selectorId).addClass('selected');
 
-		$(".post-type-field").hide().val('');
+		$(".post-type-field").hide();
 		$(inputId).show();
 
-		$("#post-type-input").val(postType);
+		$("#textpost-field").val(textpost);
 	}
 
 });
