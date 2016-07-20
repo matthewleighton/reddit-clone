@@ -7,7 +7,7 @@
 		<form method="POST" action="/users/login">
 			<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 			
-			<input type="text" name="name" placeholder="Username" value="{{ session('name') }}" required>
+			<input type="text" name="name" placeholder="Username" value="{{ session('name') }}" required autofocus>
 			<input type="password" name="password" placeholder="Password" required>
 
 			<button type="submit" class="user-submit">Login</button>
@@ -15,6 +15,8 @@
 
 		<br/>
 		<p id="login-error">{{ session('error') }}</p>
-
+		
+		<br/>
+		<p>Don't have an account? <a href="/users/new">Create one here.</a></p>
 	</div>
 @stop

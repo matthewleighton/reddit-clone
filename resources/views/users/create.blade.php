@@ -7,7 +7,7 @@
 		<form method="POST" action="/users/create">
 			<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 			
-			<input type="text" name="name" placeholder="Choose a username" value="{{ old('name') }}">
+			<input type="text" name="name" placeholder="Choose a username" value="{{ old('name') }}" autofocus autocomplete="off">
 			<p class="user-error">{{ $errors->first('name') }}</p>
 
 			<input type="password" name="password" placeholder="Password">

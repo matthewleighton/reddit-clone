@@ -14,8 +14,8 @@ class UsersController extends Controller
     public function create()
     {
     	if (Auth::user()) {
-    		return redirect()->action('SubredditsController@home');
-    	}
+            return redirect()->action('SubredditsController@home');
+        }    	
 
     	return view('users.create');
     }
@@ -46,11 +46,15 @@ class UsersController extends Controller
 
     public function loginForm()
     {
+    	if (Auth::user()) {
+            return redirect()->action('SubredditsController@home');
+        }
+    	
     	return view('users.loginForm');
     }
 
     public function login(Request $request)
-    {
+    {    	
     	$name = $request->get('name');
 
     	if (Auth::attempt(['name' => $name, 'password' => $request->get('password')])) {

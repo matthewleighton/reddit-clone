@@ -13,6 +13,7 @@
 
 Route::get('/', 'SubredditsController@home');
 
+
 Route::get('users/new', 'UsersController@create');
 
 Route::post('users/create', 'UsersController@save');
@@ -22,3 +23,12 @@ Route::get('users/login', 'UsersController@loginForm');
 Route::post('users/login', 'UsersController@login');
 
 Route::get('users/logout', 'UsersController@logout');
+
+
+
+Route::get('posts/new', 'PostsController@create');
+
+Route::post('posts/new', 'PostsController@save');
+
+Route::get('subreddits/new', 'SubredditsController@create');
+

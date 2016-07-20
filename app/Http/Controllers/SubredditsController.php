@@ -40,4 +40,9 @@ class SubredditsController extends Controller
 
     	return view('subreddits.show')->with('data', $data);
     }
+
+    public function create()
+    {
+        return 'This is the subreddit creation method.';
+    }
 }

@@ -23,4 +23,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function redirectIfLoggedIn()
+    {
+        if (Auth::user()) {
+            return redirect()->action('SubredditsController@home');
+        }
+    }
+
 }
