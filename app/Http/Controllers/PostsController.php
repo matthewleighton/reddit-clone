@@ -21,7 +21,7 @@ class PostsController extends Controller
             return redirect()->action('UsersController@login');
         }
 
-        // Handle switching the 
+        // Used to set the default value of the textpost hidden field.
         if (null !== old('textpost')) {
         	$textpost = old('textpost');
         } else {

@@ -14,7 +14,11 @@
 		{{ $data['time'] }}<br/><br/>
 
 		@foreach ($data['posts'] as $post)		
-			<p><a href="#" class="post-link">{{ $post->title }}</a></p>
+			<div class="post-section">
+				<a href="{{ $post['href'] }}" class="post-link">{{ $post->title }}</a>
+				<p class="submission-info">Submitted x hours ago by someone to somewhere</p>
+				<a href="#" class="link-to-comments">#comments</a>
+			</div>
 		@endforeach
 	</div>
 

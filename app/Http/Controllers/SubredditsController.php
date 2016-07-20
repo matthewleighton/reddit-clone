@@ -26,9 +26,13 @@ class SubredditsController extends Controller
     		$time = $input;
     	}
 
-    	$posts = ['This is a post title', 'This is another post title', 'And a third post title!'];
+        /////////////////////
 
         $posts = Post::all();
+
+        foreach ($posts as $post) {
+            $post->generateHref();
+        }
 
     	$data = array(
     		'time' => $time,
@@ -36,9 +40,7 @@ class SubredditsController extends Controller
             'user' => $user
     	);
 
-    	//return view('subreddits.show', compact($data));
-
-    	return view('subreddits.show')->with('data', $data);
+    	return view('subreddits.show', compact('data'));
     }
 
     public function create()
