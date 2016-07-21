@@ -17,6 +17,7 @@
 			<div class="individual-post">
 				<div class="votes-section">
 					<img class="vote-arrow upvote" src="/img/inactive-upvote.png"/>
+					<p class="vote-counter">0</p>
 					<img class="vote-arrow downvote" src="/img/inactive-downvote.png"/>
 				</div>
 				<div class="post-section">

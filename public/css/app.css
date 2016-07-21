@@ -133,8 +133,11 @@ input, textarea {
   display: block; }
 
 .votes-section {
+  bottom: 10px;
   display: inline-block;
-  margin-right: 5px; }
+  margin-right: 5px;
+  position: relative;
+  text-align: center; }
 
 .post-section {
   display: inline-block;
@@ -143,9 +146,14 @@ input, textarea {
 .vote-arrow {
   cursor: pointer;
   display: block;
-  margin-bottom: 5px;
+  margin: 0 auto;
+  margin-bottom: 5px; }
+
+.vote-counter {
+  font-weight: bold;
   position: relative;
-  top: 5px; }
+  bottom: 3px;
+  text-align: center; }
 
 #subreddit-links-area {
   float: left; }
