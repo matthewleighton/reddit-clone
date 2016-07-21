@@ -129,6 +129,24 @@ input, textarea {
   color: #cc0000; }
 
 /* Subreddit show page */
+.individual-post {
+  display: block; }
+
+.votes-section {
+  display: inline-block;
+  margin-right: 5px; }
+
+.post-section {
+  display: inline-block;
+  margin-bottom: 10px; }
+
+.vote-arrow {
+  cursor: pointer;
+  display: block;
+  margin-bottom: 5px;
+  position: relative;
+  top: 5px; }
+
 #subreddit-links-area {
   float: left; }
   #subreddit-links-area a:visited {
@@ -137,9 +155,6 @@ input, textarea {
 #new-content-links {
   float: right;
   line-height: 1.8; }
-
-.post-section {
-  margin-bottom: 10px; }
 
 .post-link {
   font-size: 16px; }

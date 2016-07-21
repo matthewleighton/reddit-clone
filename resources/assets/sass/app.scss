@@ -1,6 +1,10 @@
 $error: #cc0000;
 $btn-color: #4f86b5;
 
+$upvote: #FF8B60;
+$downvote: #9494FF;
+$inactive-vote: #ACACAC;
+
 
 #wrapper {
 	margin: 0 auto;
@@ -101,6 +105,28 @@ input, textarea {
 
 /* Subreddit show page */
 
+.individual-post {
+	display: block;
+}
+
+.votes-section {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.post-section {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.vote-arrow {
+	cursor: pointer;
+	display: block;
+	margin-bottom: 5px;
+	position: relative;
+	top: 5px;
+}
+
 #subreddit-links-area {
 	float: left;
 
@@ -116,10 +142,6 @@ input, textarea {
 	li {
 
 	}
-}
-
-.post-section {
-	margin-bottom: 10px;
 }
 
 .post-link {

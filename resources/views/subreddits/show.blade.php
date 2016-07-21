@@ -14,10 +14,16 @@
 		{{ $data['time'] }}<br/><br/>
 
 		@foreach ($data['posts'] as $post)		
-			<div class="post-section">
-				<a href="{{ $post['href'] }}" class="post-link">{{ $post->title }}</a>
-				<p class="submission-info">Submitted x hours ago by someone to somewhere</p>
-				<a href="#" class="link-to-comments">#comments</a>
+			<div class="individual-post">
+				<div class="votes-section">
+					<img class="vote-arrow upvote" src="/img/inactive-upvote.png"/>
+					<img class="vote-arrow downvote" src="/img/inactive-downvote.png"/>
+				</div>
+				<div class="post-section">
+					<a href="{{ $post['href'] }}" class="post-link">{{ $post->title }}</a>
+					<p class="submission-info">Submitted x hours ago by someone to somewhere</p>
+					<a href="#" class="link-to-comments">#comments</a>
+				</div>
 			</div>
 		@endforeach
 	</div>
