@@ -1,4 +1,3 @@
-
 <div class="post-title-div">
 	@include('votes-section')
 	<div class="post-section">

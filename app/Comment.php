@@ -21,6 +21,11 @@ class Comment extends Model
     	return $this->belongsTo(Comment::class);
     }
 
+    public function children()
+    {
+    	return $this->hasMany(Comment::class, 'parent_id');
+    }
+
     public function displayScore()
     {
     	$string = $this['score'] . ' point';
@@ -30,5 +35,14 @@ class Comment extends Model
     	}
 
     	return $string;
+    }
+
+    public function addChildClass()
+    {
+    	if ($this['parent_id']) {
+    		return 'child-comment';
+    	}
+
+    	return '';
     }
 }
