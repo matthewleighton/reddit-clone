@@ -54,10 +54,12 @@ class PostsController extends Controller
     		$post->url = $request->get('url');
     	}
 
-    	$subreddit = Subreddit::where('name', $request->get('subreddit'))->first();
+        $subredditName = $request->get('subreddit');
 
-    	$subreddit->posts()->save($post);
+        $subreddit = Subreddit::where('name', $subredditName)->first();
 
-    	return redirect()->action('SubredditsController@home');
+    	$newPost = $subreddit->posts()->save($post);
+
+        return redirect('r/' . $subredditName . '/comments/' . $newPost['id']);
     }
 }
