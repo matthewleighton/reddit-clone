@@ -32,4 +32,7 @@ Route::post('posts/new', 'PostsController@save');
 
 Route::get('subreddits/new', 'SubredditsController@create');
 
+
 Route::get('r/{subreddit}/comments/{post}', 'CommentsController@show');
+
+Route::post('comments/save', 'CommentsController@save');

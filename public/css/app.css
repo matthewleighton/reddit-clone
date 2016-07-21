@@ -48,7 +48,6 @@ table {
   font-family: 'Cabin', sans-serif; }
 
 a {
-  color: blue;
   text-decoration: none; }
 
 /*a:visited {
@@ -82,6 +81,8 @@ input, textarea {
   -ms-flex-direction: row;
   flex-direction: row;
   margin-bottom: 20px; }
+  .navbar a {
+    color: blue; }
 
 .navbar-element {
   height: 100%;
@@ -232,5 +233,20 @@ input, textarea {
 
 .comments-section {
   border-top: 1px dotted #808080; }
+
+.comment-main {
+  display: inline-block; }
+
+.minimize-comment {
+  cursor: pointer; }
+
+.comment-info, .comment-actions {
+  color: #888;
+  font-size: 10px; }
+
+.comment-actions {
+  font-weight: bold; }
+  .comment-actions a {
+    color: #888; }
 
 /*# sourceMappingURL=app.css.map */

@@ -14,7 +14,7 @@ $inactive-vote: #ACACAC;
 }
 
 a {
-	color: blue;
+	
 	text-decoration: none;
 }
 
@@ -48,6 +48,10 @@ input, textarea {
 	justify-content: space-between;
 	flex-direction: row;
 	margin-bottom: 20px;
+
+	a {
+		color: blue;
+	}
 }
 
 .navbar-element {
@@ -229,4 +233,25 @@ input, textarea {
 
 .comments-section {
 	border-top: 1px dotted #808080;
+}
+
+.comment-main {
+	display: inline-block;
+}
+
+.minimize-comment {
+	cursor: pointer;
+}
+
+.comment-info, .comment-actions {
+	color: #888;
+	font-size: 10px;
+}
+
+.comment-actions {
+	font-weight: bold;
+
+	a {
+		color: #888;
+	}
 }
