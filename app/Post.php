@@ -16,15 +16,37 @@ class Post extends Model
 		return $this->belongsTo(User::class);
 	}
 
-	public function generateHref()
+	public function comments()
+	{
+		return $this->hasMany(Comment::class);
+	}
+
+	public function commentsLinkText()
+	{
+		$numberOfComments = count($this->comments);
+
+		if ($numberOfComments > 1) {
+			return $numberOfComments . " comments";
+		} else if ($numberOfComments == 0) {
+			return "Comment";
+		} else {
+			return "1 comment";
+		}
+	}
+
+	public function postHref()
 	{
 		if ($this['textpost']) {
-			// TODO - Add link to the comments page.
-			$this['href'] = '/r/' . $this->subreddit['name'] . '/comments/' . $this['id'];
+			return $this->commentsHref();
 		} else {
 			//TODO - Account for whether the 'https://' is already included in the url.
-			$this['href'] = "https://" . $this['url'];
+			return "https://" . $this['url'];
 		}
+	}
+
+	public function commentsHref()
+	{
+		return '/r/' . $this->subreddit['name'] . '/comments/' . $this['id'];
 	}
 
 	public function timeSincePosted()

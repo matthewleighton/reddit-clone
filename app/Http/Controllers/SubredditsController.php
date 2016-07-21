@@ -30,9 +30,9 @@ class SubredditsController extends Controller
 
         $posts = Post::all();
 
-        foreach ($posts as $post) {
-            $post->generateHref();
-        }
+        //foreach ($posts as $post) {
+            //$post->generateHref();
+        //}
 
     	$data = array(
     		'time' => $time,
