@@ -17,7 +17,7 @@
 			<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 			<input type="hidden" name="post_id" value="{{ $post['id'] }}">
 
-			<textarea name="body" placeholder="Post a comment"></textarea>
+			<textarea class="comment-input" name="body" placeholder="Write a comment..."></textarea><br/>
 			<button type="submit">Save</button>
 		</form>
 		<br/>
@@ -27,7 +27,11 @@
 		@else
 			@foreach ($post->comments as $comment)
 				@if (!$comment['parent_id'])
-					<div class="comment-div">
+					<form class="comment-container form-closed" method="POST" action="/comments/save" >
+						<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+						<input type="hidden" name="post_id" value="{{ $post['id'] }}">
+						<input type="hidden" name="parent_id" value="{{ $comment['id'] }}">
+
 						@include('votes-section')
 						<div class="comment-main">
 							<div class="comment-info">
@@ -38,10 +42,10 @@
 								{{ $comment['body'] }}	
 							</div>
 							<div class="comment-actions">
-								<a href="javascript:void(0)" onclick="return testfunc()">reply</a>
+								<a href="javascript:void(0)" class="comment-reply-btn">reply</a>
 							</div>
 						</div>
-					</div>
+					</form>
 				@endif
 			@endforeach
 		@endif

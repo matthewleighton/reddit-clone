@@ -7,8 +7,8 @@
 		<form method="POST" action="/users/login">
 			<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 			
-			<input type="text" name="name" placeholder="Username" value="{{ session('name') }}" required autofocus>
-			<input type="password" name="password" placeholder="Password" required>
+			<input class="wide-field" type="text" name="name" placeholder="Username" value="{{ session('name') }}" required autofocus>
+			<input class="wide-field" type="password" name="password" placeholder="Password" required>
 
 			<button type="submit" class="user-submit">Login</button>
 		</form>

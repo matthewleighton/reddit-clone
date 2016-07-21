@@ -27,7 +27,7 @@ h1 {
 	text-align: center;
 }
 
-input, textarea {
+.wide-field {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	height: 30px;
@@ -231,8 +231,15 @@ input, textarea {
 	margin: 5px 0;
 }
 
+.comment-input {
+	height: 100px;
+	max-width: 450px;
+	width: 100%;
+}
+
 .comments-section {
 	border-top: 1px dotted #808080;
+	padding-top: 15px;
 }
 
 .comment-main {
@@ -254,4 +261,14 @@ input, textarea {
 	a {
 		color: #888;
 	}
+}
+
+.child-comment-textarea {
+	display: block;
+	width: 500px;
+	margin-bottom: 10px;
+}
+
+.child-comment-submit-btn {
+	margin: 0 5px 15px 0;
 }

@@ -36,11 +36,14 @@ $(document).ready(function() {
 		$("#textpost-field").val(textpost);
 	}
 
+
+	$('.comment-reply-btn').click(function() {
+		openCommentReplyForm(this);
+	});
 });
 
 // Read a page's GET URL variables and return them as an associative array.
-function getUrlVars()
-{
+function getUrlVars() {
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
     for(var i = 0; i < hashes.length; i++)
@@ -50,4 +53,39 @@ function getUrlVars()
         vars[hash[0]] = hash[1];
     }
     return vars;
+}
+
+function openCommentReplyForm(element) {
+	var form = $(element).parents('form:first');
+	if ($(form).hasClass('form-closed')) {
+		
+
+		form.append(function() {
+			var textarea = "<textarea name='body' class='child-comment-textarea comment-input' placeholder='Write a comment...'></textarea>";
+			var submitBtn = "<button type='submit' class='child-comment-submit-btn'>Save</buton>"
+			var cancelBtn = "<button type='button' class='child-comment-cancel-btn'>Cancel</buton>"
+
+			return textarea + submitBtn + cancelBtn;
+		});
+
+		$(form).removeClass('form-closed');
+		$(form).addClass('form-open');
+
+		$('.child-comment-cancel-btn').click(function() {
+			closeCommentReplyForm(this);
+		});
+	}
+}
+
+function closeCommentReplyForm(element) {
+	console.log("closing comment reply form");
+
+	var form = $(element).parents('form:first');
+
+	$(form).children('.child-comment-textarea:first').remove();
+	$(form).children('.child-comment-submit-btn:first').remove();
+	$(form).children('.child-comment-cancel-btn:first').remove();
+
+	$(form).removeClass('form-open');
+	$(form).addClass('form-closed');
 }

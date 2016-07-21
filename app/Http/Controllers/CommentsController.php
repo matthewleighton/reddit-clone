@@ -19,14 +19,7 @@ class CommentsController extends Controller
     	$subreddit = Subreddit::where('name', $subreddit)->first();
     	$post = Post::find($post);
 
-    	$data = array(
-    		'subreddit' => $subreddit,
-    		'post' => $post
-    	);
-
     	return view('comments.show')->with('post', $post);
-
-		//return view('comments.show', compact('data'));
     }
 
     public function save(Request $request)
@@ -50,14 +43,5 @@ class CommentsController extends Controller
         $post->comments()->save($comment);
 
         return back();
-
-
-        return $request->get('post_id');
-
-        return Auth::user()['name'];
-
-        return $request->get('body');
-
-        return 'This is the comments save method';
     }
 }
