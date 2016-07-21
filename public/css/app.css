@@ -136,8 +136,10 @@ input, textarea {
   bottom: 10px;
   display: inline-block;
   margin-right: 5px;
+  margin-top: 5px;
   position: relative;
-  text-align: center; }
+  text-align: center;
+  vertical-align: top; }
 
 .post-section {
   display: inline-block;
@@ -222,6 +224,12 @@ input, textarea {
   display: none; }
 
 /* Comments Page */
+.textpost-body {
+  background-color: #FAFAFA;
+  border: 1px solid #AAAAAA;
+  padding: 5px 10px;
+  margin: 5px 0; }
+
 .comments-section {
   border-top: 1px dotted #808080; }
 

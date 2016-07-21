@@ -2,11 +2,15 @@
 
 @section('content')
 	
-	@include('posts.post-title')
+	
 
-	@if ('$post->textpost')
-		<span>This is a textpost</span>
+	@if ($post->textpost)
+		@section('textpost-body')
+			<div class="textpost-body">{{ $post->body }}</div>
+		@stop
 	@endif
+
+	@include('posts.post-title')
 
 	<div class="comments-section">
 		<form method="POST">
