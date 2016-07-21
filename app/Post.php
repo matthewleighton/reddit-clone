@@ -26,4 +26,9 @@ class Post extends Model
 			$this['href'] = "https://" . $this['url'];
 		}
 	}
+
+	public function timeSincePosted()
+	{
+		return $this->created_at->diffForHumans();
+	}
 }

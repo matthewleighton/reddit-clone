@@ -7,7 +7,7 @@
 	</div>
 	<div class="post-section">
 		<a href="{{ $post['href'] }}" class="post-link">{{ $post->title }}</a>
-		<p class="submission-info">Submitted x hours ago by <a href="#">{{ $post->user['name'] }}</a> to {{ $post->subreddit['name'] }}</p>
+		<p class="submission-info">Submitted {{ $post->timeSincePosted() }} <a href="#">{{ $post->user['name'] }}</a> to {{ $post->subreddit['name'] }}</p>
 		<a href="#" class="link-to-comments">#comments</a>
 	</div>
 </div>
