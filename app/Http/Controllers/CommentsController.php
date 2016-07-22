@@ -14,12 +14,26 @@ use Auth;
 
 class CommentsController extends Controller
 {
-    public function show($subreddit, $post)
+    public function index($subreddit, $post)
     {
-    	$subreddit = Subreddit::where('name', $subreddit)->first();
+        $subreddit = Subreddit::where('name', $subreddit)->first();
     	$post = Post::find($post);
 
-    	return view('comments.show')->with('post', $post);
+    	return view('comments.show')->with('post', $post)
+                                    ->with('subreddit', $subreddit)
+                                    ->with('permalinkId', '');
+    }
+
+    public function show($subreddit, $post, $comment)
+    {
+        $subreddit = Subreddit::where('name', $subreddit)->first();
+        $post = Post::find($post);        
+        $comment = Comment::find($comment);
+
+        return view('comments.show')->with('post', $post)
+                                    ->with('subreddit', $subreddit)
+                                    ->with('comment', $comment)
+                                    ->with('permalinkId', $comment['id']);
     }
 
     public function save(Request $request)

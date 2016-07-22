@@ -101,6 +101,7 @@ function closeCommentReplyForm(element) {
 function minimizeComment(element) {
 	var container = $(element).parents('.comment-container:first');
 	$(container).find('div').not('.comment-main').not('.comment-info').not('.votes-section').hide();
+	$(container).find('ul').hide();
 	$(container).find('.votes-section').addClass('hidden-votes');
 
 	$(container).find('.minimize-btn').hide();
@@ -117,6 +118,7 @@ function maximizeComment(element) {
 	var container = $(element).parents('.comment-container:first');
 
 	$(container).find('div').show();
+	$(container).find('ul').show();
 	$(container).find('.votes-section').removeClass('hidden-votes');
 
 	$(container).find('.maximize-btn').hide();

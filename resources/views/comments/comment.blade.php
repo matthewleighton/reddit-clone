@@ -10,14 +10,15 @@
 				<span class="minimize-btn">[-]</span><span class='maximize-btn'>[+]</span>
 				<a href='#'>{{ $comment->user['name'] }}</a> {{ $comment->displayScore() }} {{ $comment->created_at->diffForHumans() }}
 			</div>
-			<div class="comment-body">
-				{{ $comment['body'] }}	
+			<div class="comment-body {{ $comment->permalinkClass($permalinkId) }}">
+				{{ $comment['body'] }}
 			</div>
-			<div class="comment-actions">
+			<ul class="comment-actions">
+				<li><a href="/r/{{ $subreddit['name'] . '/comments/' . $post['id'] . '/' .$comment['id'] }}">perma-link</a></li>
 				@if (Auth::user())
-					<a href="javascript:void(0)" class="comment-reply-btn">reply</a>
+					<li><a href="javascript:void(0)" class="comment-reply-btn">reply</a></li>
 				@endif
-			</div>
+			</ul>
 		</div>
 	</form>
 

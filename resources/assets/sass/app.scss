@@ -5,6 +5,8 @@ $upvote: #FF8B60;
 $downvote: #9494FF;
 $inactive-vote: #ACACAC;
 
+$link-color: #369;
+
 
 #wrapper {
 	margin: 0 auto;
@@ -235,6 +237,7 @@ h1 {
 	border: 1px solid #AAAAAA;
 	padding: 5px 10px;
 	margin: 5px 0;
+	white-space: pre;
 }
 
 .comment-input {
@@ -271,11 +274,21 @@ h1 {
 	font-size: 10px;
 }
 
+.comment-body {
+	padding: 7px 5px;
+}
+
 .comment-actions {
 	font-weight: bold;
+	margin-bottom: 5px;
 
 	a {
 		color: #888;
+	}
+
+	li {
+		display: inline-block;
+		margin-right: 8px;
 	}
 }
 
@@ -299,4 +312,19 @@ h1 {
 	margin-bottom: 10px;
 	position: relative;
 	bottom: 5px;
+}
+
+.linked-comment {
+	background-color: #ffc;
+}
+
+.permalink-comment-alert {
+	background-color: #f6e69f;
+	border: 1px solid #ffa500;
+	margin-bottom: 10px;
+	padding: 5px 10px;
+
+	a {
+		color: $link-color;
+	}
 }

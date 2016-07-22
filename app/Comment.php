@@ -37,12 +37,23 @@ class Comment extends Model
     	return $string;
     }
 
+    // Adds a class identifying the comment as a child comment.
     public function addChildClass()
     {
     	if ($this['parent_id']) {
     		return 'child-comment';
     	}
 
+    	return '';
+    }
+
+    // Adds a class specifying a comment which was linked to directly.
+    public function permalinkClass($permalinkId)
+    {
+    	if ($this['id'] == $permalinkId) {
+    		return 'linked-comment';
+    	}
+    	
     	return '';
     }
 }
