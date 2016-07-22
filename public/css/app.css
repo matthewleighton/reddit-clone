@@ -159,6 +159,7 @@ h1 {
 
 .vote-counter {
   font-weight: bold;
+  display: inline-block;
   position: relative;
   bottom: 3px;
   text-align: center; }
@@ -176,8 +177,10 @@ h1 {
 
 .link-to-comments {
   color: #888;
+  display: block;
   font-size: 10px;
-  font-weight: bold; }
+  font-weight: bold;
+  margin-top: 3px; }
 
 /* Subreddit show page */
 #subreddit-links-area {
@@ -233,9 +236,14 @@ h1 {
 .textpost-body {
   background-color: #FAFAFA;
   border: 1px solid #AAAAAA;
-  padding: 5px 10px;
+  display: inline-block;
   margin: 5px 0;
-  white-space: pre; }
+  max-width: 840px;
+  overflow: hidden;
+  padding: 5px 10px;
+  word-wrap: break-word;
+  word-break: break-word;
+  white-space: pre-line; }
 
 .comment-input {
   height: 100px;
