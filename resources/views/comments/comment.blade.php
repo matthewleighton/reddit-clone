@@ -7,7 +7,7 @@
 		@include('votes-section')
 		<div class="comment-main">
 			<div class="comment-info">
-				<span class="minimize-btn">[-]</span> 
+				<span class="minimize-btn">[-]</span><span class='maximize-btn'>[+]</span>
 				<a href='#'>{{ $comment->user['name'] }}</a> {{ $comment->displayScore() }} {{ $comment->created_at->diffForHumans() }}
 			</div>
 			<div class="comment-body">

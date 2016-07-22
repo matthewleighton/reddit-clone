@@ -255,6 +255,10 @@ h1 {
 .minimize-btn {
   cursor: pointer; }
 
+.maximize-btn {
+  cursor: pointer;
+  display: none; }
+
 .comment-info, .comment-actions {
   color: #888;
   font-size: 10px; }

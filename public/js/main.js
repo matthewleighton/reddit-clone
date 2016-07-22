@@ -44,6 +44,10 @@ $(document).ready(function() {
 	$('.minimize-btn').click(function() {
 		minimizeComment(this);
 	});
+
+	$('.maximize-btn').click(function() {
+		maximizeComment(this);
+	});
 });
 
 // Read a page's GET URL variables and return them as an associative array.
@@ -99,7 +103,24 @@ function minimizeComment(element) {
 	$(container).find('div').not('.comment-main').not('.comment-info').not('.votes-section').hide();
 	$(container).find('.votes-section').addClass('hidden-votes');
 
+	$(container).find('.minimize-btn').hide();
+	$(container).find('.maximize-btn').show();
+
 	$(container).addClass('comment-minimized');
 
 	closeCommentReplyForm(element);
+}
+
+function maximizeComment(element) {
+	console.log("Maximizing comment");
+
+	var container = $(element).parents('.comment-container:first');
+
+	$(container).find('div').show();
+	$(container).find('.votes-section').removeClass('hidden-votes');
+
+	$(container).find('.maximize-btn').hide();
+	$(container).find('.minimize-btn').show();
+
+	$(container).removeClass('comment-minimized');
 }
