@@ -118,9 +118,15 @@ h1 {
 	display: inline-block;
 	margin-right: 5px;
 	margin-top: 5px;
+	overflow: hidden;
 	position: relative;
 	text-align: center;
 	vertical-align: top;
+}
+
+.hidden-votes {
+	height: 1px;
+	visibility: hidden;
 }
 
 .post-section {
@@ -251,7 +257,7 @@ h1 {
 	display: inline-block;
 }
 
-.minimize-comment {
+.minimize-btn {
 	cursor: pointer;
 }
 
@@ -282,4 +288,10 @@ h1 {
 	border-left: 1px dotted #ddddff;
 	margin-left: 15px;
 	padding-left: 6px;
+}
+
+.comment-minimized {
+	margin-bottom: 10px;
+	position: relative;
+	bottom: 5px;
 }

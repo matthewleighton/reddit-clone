@@ -18,7 +18,7 @@
 				<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 				<input type="hidden" name="post_id" value="{{ $post['id'] }}">
 
-				<textarea class="comment-input" name="body" placeholder="Write a comment..."></textarea><br/>
+				<textarea class="comment-input" name="body" placeholder="Write a comment..." required></textarea><br/>
 				<button type="submit">Save</button>
 			</form>
 			<br/>
