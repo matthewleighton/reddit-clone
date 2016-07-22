@@ -13,14 +13,16 @@
 	@include('posts.post-title')
 
 	<div class="comments-section">
-		<form method="POST" action="/comments/save">
-			<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
-			<input type="hidden" name="post_id" value="{{ $post['id'] }}">
+		@if (Auth::user())
+			<form method="POST" action="/comments/save">
+				<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+				<input type="hidden" name="post_id" value="{{ $post['id'] }}">
 
-			<textarea class="comment-input" name="body" placeholder="Write a comment..."></textarea><br/>
-			<button type="submit">Save</button>
-		</form>
-		<br/>
+				<textarea class="comment-input" name="body" placeholder="Write a comment..."></textarea><br/>
+				<button type="submit">Save</button>
+			</form>
+			<br/>
+		@endif
 
 		@if (count($post->comments) < 1)
 			<span>There doesn't appear to be anything there.</span>

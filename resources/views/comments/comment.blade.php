@@ -14,7 +14,9 @@
 				{{ $comment['body'] }}	
 			</div>
 			<div class="comment-actions">
-				<a href="javascript:void(0)" class="comment-reply-btn">reply</a>
+				@if (Auth::user())
+					<a href="javascript:void(0)" class="comment-reply-btn">reply</a>
+				@endif
 			</div>
 		</div>
 	</form>

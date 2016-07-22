@@ -24,6 +24,10 @@ class CommentsController extends Controller
 
     public function save(Request $request)
     {
+        if (!Auth::user()) {
+            return redirect()->action('SubredditsController@home');
+        }
+
         $this->validate($request, [
             'body' => 'required',
             'post_id' => 'required'

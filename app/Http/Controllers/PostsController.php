@@ -33,7 +33,11 @@ class PostsController extends Controller
 
     public function save(Request $request)
     {
-    	$this->validate($request, [
+    	if (!Auth::user()) {
+            return redirect()->action('SubredditsController@home');
+        }
+
+        $this->validate($request, [
     		'title' => 'required',
     		'subreddit' => 'required|exists:subreddits,name',
     		'textpost' => 'required',
