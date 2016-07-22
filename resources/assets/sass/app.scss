@@ -239,7 +239,12 @@ h1 {
 
 .comments-section {
 	border-top: 1px dotted #808080;
+	margin-bottom: 25px;
 	padding-top: 15px;
+}
+
+.comment-container {
+	padding-top: 5px;
 }
 
 .comment-main {
@@ -274,7 +279,7 @@ h1 {
 }
 
 .child-comment {
-	border-left: 1px solid black;
+	border-left: 1px dotted #ddddff;
 	margin-left: 15px;
-	padding-left: 3px;
+	padding-left: 6px;
 }
