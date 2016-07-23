@@ -11,9 +11,15 @@
 |
 */
 
+// Development
 $app = new Illuminate\Foundation\Application(
     realpath(__DIR__.'/../')
 );
+
+// Production
+//$app = new App\MyApp(
+//    realpath(__DIR__.'/../../reddit_app')
+//);
 
 /*
 |--------------------------------------------------------------------------

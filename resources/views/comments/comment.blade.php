@@ -14,7 +14,7 @@
 				{{ $comment['body'] }}
 			</div>
 			<ul class="comment-actions">
-				<li><a href="/r/{{ $subreddit['name'] . '/comments/' . $post['id'] . '/' .$comment['id'] }}">perma-link</a></li>
+				<li><a href="{{ appRoot() }}r/{{ $subreddit['name'] . '/comments/' . $post['id'] . '/' .$comment['id'] }}">perma-link</a></li>
 				@if (Auth::user())
 					<li><a href="javascript:void(0)" class="comment-reply-btn">reply</a></li>
 				@endif

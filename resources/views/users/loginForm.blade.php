@@ -17,6 +17,6 @@
 		<p id="login-error">{{ session('error') }}</p>
 		
 		<br/>
-		<p>Don't have an account? <a href="/users/new">Create one here.</a></p>
+		<p>Don't have an account? <a href="{{ appRoot() }}users/new">Create one here.</a></p>
 	</div>
 @stop

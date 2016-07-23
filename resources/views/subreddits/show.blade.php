@@ -19,9 +19,9 @@
 
 	<div id="new-content-links">
 		<ul>
-			<li><a href="/posts/new">Submit a new link</a></li>
-			<li><a href="/posts/new?selfpost=true">Submit a new text post</a></li>
-			<li><a href="/subreddits/new">Create your own subreddit</a></li>
+			<li><a href="{{ appRoot() }}posts/new">Submit a new link</a></li>
+			<li><a href="{{ appRoot() }}posts/new?selfpost=true">Submit a new text post</a></li>
+			<li><a href="{{ appRoot() }}subreddits/new">Create your own subreddit</a></li>
 		</ul>
 	</div>
 @stop

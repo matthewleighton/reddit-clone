@@ -19,7 +19,11 @@
 |
 */
 
+// Development
 require __DIR__.'/../bootstrap/autoload.php';
+
+// Production
+//require __DIR__.'/../../reddit_app/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +37,11 @@ require __DIR__.'/../bootstrap/autoload.php';
 |
 */
 
+// Development
 $app = require_once __DIR__.'/../bootstrap/app.php';
+
+// Production
+//require __DIR__.'/../../reddit_app/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------

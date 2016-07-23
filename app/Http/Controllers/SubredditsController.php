@@ -45,6 +45,15 @@ class SubredditsController extends Controller
 
     public function create()
     {
-        return 'This is the subreddit creation method.';
+        return view('subreddits.create');   
+    }
+
+    public function save(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|max:255'
+        ]);
+
+        return 'This is the subreddits Save function.';
     }
 }
