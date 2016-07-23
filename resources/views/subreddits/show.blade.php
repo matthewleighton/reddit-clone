@@ -7,12 +7,10 @@
 
 
 @section('content')
-	<div class="time-selector">Links from</div>
+	<!--<div class="time-selector">Links from</div>-->
 
 	<div id="subreddit-links-area">
-		{{ $data['time'] }}<br/><br/>
-
-		@foreach ($data['posts'] as $post)
+		@foreach ($posts as $post)
 			@include('posts.post-title')
 		@endforeach
 	</div>

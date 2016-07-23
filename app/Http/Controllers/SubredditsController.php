@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Auth;
+
 use App\Subreddit;
 use App\Post;
-use Auth;
+
 
 class SubredditsController extends Controller
 {
@@ -17,6 +19,7 @@ class SubredditsController extends Controller
         // TODO - Figure out a way of using the query string to define the time period to find posts from.
     	// e.g. 24 hours is default, else past week/month/year/all.
     	
+        /*
     	$validTimes = ['day', 'week', 'month', 'year', 'all'];
 
     	$time = 'day';
@@ -25,22 +28,23 @@ class SubredditsController extends Controller
     	if (in_array($input, $validTimes)) {
     		$time = $input;
     	}
-
+        */
         /////////////////////
 
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->get();
 
-        //foreach ($posts as $post) {
-            //$post->generateHref();
-        //}
+    	return view('subreddits.show')->with('posts', $posts);
+    }
 
-    	$data = array(
-    		'time' => $time,
-    		'posts' => $posts,
-            'user' => $user
-    	);
+    public function show($subreddit)
+    {
+        //$posts = Post::where('subreddit', 'testsub');
 
-    	return view('subreddits.show', compact('data'));
+        $subreddit = Subreddit::where('name', $subreddit)->first();
+        $posts = $subreddit->posts;
+
+        return view('subreddits.show')->with('posts', $posts)
+                                      ->with('subreddit', $subreddit);
     }
 
     public function create()

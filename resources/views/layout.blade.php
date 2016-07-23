@@ -21,7 +21,10 @@
 	<div id="wrapper">
 		<div class="navbar">
 			<div class="navbar-left navbar-element">
-				<a href="{{ appRoot() }}" id="header-logo">Laravel Reddit Clone</a>
+				<a href="{{ appRoot() }}" id="header-logo">Laravel Reddit Clone</a> 
+				@if (isset($subreddit))
+					<a href="{{ appRoot() }}r/{{ $subreddit['name'] }}" class="subreddit-title">{{ $subreddit['name'] }}</a>
+				@endif
 			</div>
 			<div class="navbar-center navbar-element">
 				@yield('header-center')

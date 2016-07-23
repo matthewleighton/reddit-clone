@@ -188,6 +188,18 @@ h1 {
 
 /* Subreddit show page */
 
+.subreddit-title {
+	color: black !important; 
+	font-size: 13px;
+	font-weight: bold;
+	margin-left: 10px;
+	text-transform: uppercase;
+}
+
+.subreddit-title:hover {
+	text-decoration: underline;
+}
+
 #subreddit-links-area {
 	float: left;
 }
