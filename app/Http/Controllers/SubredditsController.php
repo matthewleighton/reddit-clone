@@ -45,15 +45,26 @@ class SubredditsController extends Controller
 
     public function create()
     {
+        if (!Auth::user()) {
+            return redirect()->action('UsersController@login');
+        }
+
         return view('subreddits.create');   
     }
 
     public function save(Request $request)
     {
+        // Remove trailing whitespace before validation.
+        $request->merge(['name' => trim($request->get('name'))]);
+
         $this->validate($request, [
-            'name' => 'required|max:255'
+            'name' => 'required|max:255|letters_only'
         ]);
 
-        return 'This is the subreddits Save function.';
+        $subreddit = new Subreddit;
+        $subreddit->name = $request->get('name');
+        $subreddit->save();
+
+        return redirect()->action('SubredditsController@home');
     }
 }

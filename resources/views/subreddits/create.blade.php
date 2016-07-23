@@ -8,8 +8,10 @@
 		
 			<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 
-			<p class="input-title">Name</p>
-			<p class="input-description">Choose a name for your subreddit for use in the url. (No spaces)</p>
+			<div class="input-description">
+				<p class="input-title">Name</p>
+				<p>Choose a name for your subreddit for use in the url. (Letters only)</p>
+			</div>
 			<input class="wide-field" type="text" name="name" placeholder="Name" value="{{ old('name') }}">
 			<p class="user-error">{{ $errors->first('name') }}</p>
 			

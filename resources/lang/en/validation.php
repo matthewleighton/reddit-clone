@@ -104,7 +104,10 @@ return [
             'required_if' => 'The url field is required.'
         ],
         'body' => [
-            'required_if' => 'The text field is required'
+            'required_if' => 'The text field is required.'
+        ],
+        'name' => [
+            'letters_only' => 'The name must only include letters.'
         ]
     ],
 

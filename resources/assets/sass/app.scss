@@ -73,7 +73,7 @@ h1 {
 	font-size: 13px;
 }
 
-/* User Creation/Login Forms */
+/* Forms */
 .user-form {
 	margin: 0 auto;
 	max-width: 500px;
@@ -102,11 +102,22 @@ h1 {
 	color: #cc0000;
 	font-size: 12px;
 	float: left;
+	position: relative;
+	top: -7px;
 	vertical-align: top;
 }
 
 #login-error {
 	color: $error;
+}
+
+.input-description {
+	font-size: 14px;
+	margin-bottom: -7px;
+}
+
+.input-title {
+	font-weight: bold;
 }
 
 /* Post Title */
