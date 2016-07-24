@@ -65,8 +65,13 @@ h1 {
 	margin: 25px 10px 0 10px;
 }
 
-.navbar-center {
-	margin-top: 10px;
+.view-by-left {
+	float: left;
+	text-align: center;
+}
+
+.view-by-right {
+	float: right;
 }
 
 #view-by {
@@ -200,6 +205,12 @@ h1 {
 	text-decoration: underline;
 }
 
+.view-subreddit-by {
+	text-align: center;
+	margin: 0 auto;
+	margin-top: -10px;
+}
+
 #subreddit-links-area {
 	float: left;
 }
@@ -232,7 +243,7 @@ h1 {
 }
 
 .subscription-area {
-	
+
 }
 
 .subscribe-btn {

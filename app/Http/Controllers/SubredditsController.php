@@ -74,5 +74,21 @@ class SubredditsController extends Controller
         return redirect('r/' . $subreddit['name']);
     }
 
+    public function subscriptions()
+    {
+        $subscriptions = Auth::user()->subreddits;
+        $subscriptionIds = [];
+
+        foreach ($subscriptions as $subscription) {
+            array_push($subscriptionIds, $subscription->id);
+        }
+
+        $posts = Post::whereIn('subreddit_id', $subscriptionIds)->take(10)->orderBy('created_at', 'desc')->get();
+
+        //var_dump($posts);
+
+        return view('subreddits.show')->with('posts', $posts);
+    }
+
 
 }

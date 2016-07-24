@@ -13,6 +13,8 @@
 
 Route::get('/', 'SubredditsController@home');
 
+Route::get('subscriptions', 'SubredditsController@subscriptions');
+
 
 Route::get('users/new', 'UsersController@create');
 

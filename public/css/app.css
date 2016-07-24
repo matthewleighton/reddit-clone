@@ -92,8 +92,12 @@ h1 {
   margin-top: 25px;
   margin: 25px 10px 0 10px; }
 
-.navbar-center {
-  margin-top: 10px; }
+.view-by-left {
+  float: left;
+  text-align: center; }
+
+.view-by-right {
+  float: right; }
 
 #view-by {
   font-size: 13px; }
@@ -201,6 +205,11 @@ h1 {
 
 .subreddit-title:hover {
   text-decoration: underline; }
+
+.view-subreddit-by {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: -10px; }
 
 #subreddit-links-area {
   float: left; }

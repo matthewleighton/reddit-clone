@@ -3,12 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Laravel Reddit Clone</title>
-	
-	<!--<script   src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-	<script type="text/javascript" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">-->
-
-	<!--<script type="text/javascript" src="/js/bootstrap.min.js"></script>-->
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="{{ appRoot() }}js/main.js"></script>
@@ -26,9 +20,13 @@
 					<a href="{{ appRoot() }}r/{{ $subreddit['name'] }}" class="subreddit-title">{{ $subreddit['name'] }}</a>
 				@endif
 			</div>
-			<div class="navbar-center navbar-element">
-				@yield('header-center')
-			</div>
+				
+			@if (Auth::user())
+				<div clas="view-by-right">
+					<a href="{{ appRoot() }}">All Subreddits</a> | <a href="{{ appRoot() }}subscriptions">My Subscriptions</a>
+				</div>
+			@endif
+			
 			<div class="navbar-right navbar-element">
 				@if (Auth::user()['name'])
 					Hello, {{ Auth::user()['name'] }} | <a href="{{ appRoot() }}users/logout">Logout</a>
