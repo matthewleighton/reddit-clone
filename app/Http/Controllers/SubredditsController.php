@@ -71,4 +71,6 @@ class SubredditsController extends Controller
 
         return redirect()->action('SubredditsController@home');
     }
+
+    
 }

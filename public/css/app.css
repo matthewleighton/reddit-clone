@@ -209,6 +209,40 @@ h1 {
   float: right;
   line-height: 1.8; }
 
+/* Sidebar */
+.sidebar {
+  border: 1px solid black;
+  clear: right;
+  float: right;
+  font-size: 15px;
+  margin-top: 20px;
+  width: 300px; }
+
+.sidebar-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: capitalize; }
+  .sidebar-title a {
+    color: black; }
+
+.subscribe-btn {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+  padding: 3px 20px;
+  width: 100px; }
+
+.unsubscribed {
+  background-color: #5ea96a; }
+
+.subscribed {
+  background-color: #CD6165; }
+
+.subscriber-count {
+  margin-left: 10px; }
+
 /* Post creation page */
 #post-type-selector-area {
   display: -ms-flexbox;

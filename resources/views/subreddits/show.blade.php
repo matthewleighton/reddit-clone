@@ -22,4 +22,29 @@
 			<li><a href="{{ appRoot() }}subreddits/new">Create your own subreddit</a></li>
 		</ul>
 	</div>
+
+	@if (isset($subreddit))
+		<div class="sidebar">
+			<p class="sidebar-title"><a href="{{ appRoot() }}r/{{ $subreddit['name'] }}">{{$subreddit['name']}}</a></p>
+			<p class="subscription-area">
+				@if (Auth::user()->isSubscribedTo($subreddit['id']))
+					<a href="javascript:void(0)" class="subscribe-btn subscribed">unsubscribe</a>
+				@else
+					<a href="javascript:void(0)" class="subscribe-btn unsubscribed">subscribe</a>
+				@endif
+				 <span class="subscriber-count">{{ count($subreddit->users) }} {{ str_plural('reader', count($subreddit->users)) }}</span>
+				<span id="subscription-id" hidden>{{ $subreddit['id'] }}</span>
+			</p>
+
+			<div class="list-subscribers">
+				<br/>
+				<ul>
+					@foreach($subreddit->users as $user)
+						<li>{{ $user['name'] }}</li>
+					@endforeach
+				</ul>
+			</div>
+		</div>
+	@endif
+
 @stop

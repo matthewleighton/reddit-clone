@@ -25,11 +25,34 @@ class User extends Authenticatable
     ];
 
 
+    public function subreddits()
+    {
+        return $this->belongsToMany(Subreddit::class);
+    }
+
     public function redirectIfLoggedIn()
     {
         if (Auth::user()) {
             return redirect()->action('SubredditsController@home');
         }
+    }
+
+    // Returns true if the active user is subscribed to the given subreddit.
+    public function isSubscribedTo($subredditId) {
+        if ($this->subreddits->contains($subredditId)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function subscribeTo($subredditId) {
+        $this->subreddits()->attach($subredditId);
+    }    
+
+    public function unsubscribeFrom($subredditId) {
+        $this->subreddits()->detach($subredditId);
+        //$subreddit->users()->detach(Auth::user()['id']);
     }
 
 }

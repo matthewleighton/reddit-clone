@@ -1,3 +1,6 @@
+// Change this in production to "/reddit/".
+var rootPath = "/";
+
 $(document).ready(function() {
 
 	if ($("#post-creation-form").length) {
@@ -47,6 +50,17 @@ $(document).ready(function() {
 
 	$('.maximize-btn').click(function() {
 		maximizeComment(this);
+	});
+
+	$('.subscribe-btn').click(function() {
+		console.log(this);
+		if ($(this).hasClass('unsubscribed')) {
+			console.log("Triggered subscribe function");
+			subscribeToSubreddit(this);
+		} else {
+			console.log("Triggered unsubscribe function");
+			unsubscribeFromSubreddit(this);
+		}
 	});
 });
 
@@ -125,4 +139,28 @@ function maximizeComment(element) {
 	$(container).find('.minimize-btn').show();
 
 	$(container).removeClass('comment-minimized');
+}
+
+function subscribeToSubreddit(element) {
+	var subredditId = $('#subscription-id').text();
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", rootPath + "subscriptions/create/" + subredditId, true);
+	xhttp.send();
+
+	$(element).removeClass('unsubscribed');
+	$(element).addClass('subscribed');
+	$(element).text('ubsubscribe');
+}
+
+function unsubscribeFromSubreddit(element) {
+	var subredditId = $('#subscription-id').text();
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", rootPath + "subscriptions/destroy/" + subredditId, true);
+	xhttp.send();
+
+	$(element).removeClass('subscribed');
+	$(element).addClass('unsubscribed');
+	$(element).text('subscribe');
 }

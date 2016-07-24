@@ -30,12 +30,18 @@ Route::get('posts/new', 'PostsController@create');
 
 Route::post('posts/new', 'PostsController@save');
 
+
+
 Route::get('subreddits/new', 'SubredditsController@create');
 
 Route::post('subreddits/new', 'SubredditsController@save');
 
-
 Route::get('r/{subreddit}', 'SubredditsController@show');
+
+Route::get('subscriptions/create/{subreddit}', 'SubscriptionsController@create');
+
+Route::get('subscriptions/destroy/{subreddit}', 'SubscriptionsController@destroy');
+
 
 
 Route::get('r/{subreddit}/comments/{post}', 'CommentsController@index');
