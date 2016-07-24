@@ -69,8 +69,10 @@ class SubredditsController extends Controller
         $subreddit->name = $request->get('name');
         $subreddit->save();
 
-        return redirect()->action('SubredditsController@home');
+        Auth::user()->subscribeTo($subreddit['id']);
+
+        return redirect('r/' . $subreddit['name']);
     }
 
-    
+
 }
