@@ -53,4 +53,14 @@ class Post extends Model
 	{
 		return $this->created_at->diffForHumans();
 	}
+
+	// Return a table to sort results by, based on the given url parameter.
+	public static function getSortingOrder($sort)
+	{
+		if ($sort == 'new') {
+            return 'created_at';
+        }
+
+        return 'score';
+	}
 }

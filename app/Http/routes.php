@@ -13,7 +13,7 @@
 
 Route::get('/', 'SubredditsController@all');
 
-Route::get('subscriptions', 'SubredditsController@subscriptions');
+Route::get('{sort?}', 'SubredditsController@all')->where('sort', '^(new|top)$' );
 
 
 Route::get('users/new', 'UsersController@create');
@@ -38,7 +38,11 @@ Route::get('subreddits/new', 'SubredditsController@create');
 
 Route::post('subreddits/new', 'SubredditsController@save');
 
-Route::get('r/{subreddit}', 'SubredditsController@show');
+
+
+Route::get('subscriptions', 'SubredditsController@subscriptions');
+
+Route::get('subscriptions/{sort?}', 'SubredditsController@subscriptions')->where('sort', '^(new|top)$' );
 
 Route::get('subscriptions/create/{subreddit}', 'SubscriptionsController@create');
 
@@ -46,21 +50,12 @@ Route::get('subscriptions/destroy/{subreddit}', 'SubscriptionsController@destroy
 
 
 
-Route::get('{sort}', 'SubredditsController@all')->where('sort', '^(new|top)$' );
-
-Route::get('r/{subreddit}/new', 'SubredditsController@new');
-
-//Route::get('top', 'SubredditsController@top');
-
-Route::get('r/{subreddit}/top', 'SubredditsController@top');
-
-
-
-
-
+Route::get('r/{subreddit}/{sort?}', 'SubredditsController@show')->where('sort', '^(new|top)$' );
 
 Route::get('r/{subreddit}/comments/{post}', 'CommentsController@index');
 
 Route::get('r/{subreddit}/comments/{post}/{comment}', 'CommentsController@show');
+
+
 
 Route::post('comments/save', 'CommentsController@save');

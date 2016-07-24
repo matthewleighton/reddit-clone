@@ -12,44 +12,21 @@ use App\Post;
 
 class SubredditsController extends Controller
 {
-    public function all(Request $request, $sort = 'top')
-    {
-    	
-               
-        if ($sort == 'top') {
-            $sortAttribute = 'score';
-        } else {
-            $sortAttribute = 'created_at';
-        }
+    public function all(Request $request, $sort = 'new')
+    {     
+        $sortBy = Post::getSortingOrder($sort);
 
-    
-
-        // TODO - Figure out a way of using the query string to define the time period to find posts from.
-    	// e.g. 24 hours is default, else past week/month/year/all.
-    	
-        /*
-    	$validTimes = ['day', 'week', 'month', 'year', 'all'];
-
-    	$time = 'day';
-    	$input = $request->input('time');
-
-    	if (in_array($input, $validTimes)) {
-    		$time = $input;
-    	}
-        */
-        /////////////////////
-
-        $posts = Post::orderBy($sortAttribute, 'desc')->get();
+        $posts = Post::orderBy($sortBy, 'desc')->get();
 
     	return view('subreddits.show')->with('posts', $posts);
     }
 
-    public function show($subreddit)
+    public function show(Request $request, $subreddit, $sort='new')
     {
-        //$posts = Post::where('subreddit', 'testsub');
+        $sortBy = Post::getSortingOrder($sort);
 
         $subreddit = Subreddit::where('name', $subreddit)->first();
-        $posts = $subreddit->posts;
+        $posts = Post::where('subreddit_id', $subreddit['id'])->take(10)->orderBy($sortBy, 'desc')->get();
 
         return view('subreddits.show')->with('posts', $posts)
                                       ->with('subreddit', $subreddit);
@@ -82,8 +59,10 @@ class SubredditsController extends Controller
         return redirect('r/' . $subreddit['name']);
     }
 
-    public function subscriptions()
+    public function subscriptions(Request $request, $sort='new')
     {
+        $sortBy = Post::getSortingOrder($sort);
+
         $subscriptions = Auth::user()->subreddits;
         $subscriptionIds = [];
 
@@ -91,10 +70,8 @@ class SubredditsController extends Controller
             array_push($subscriptionIds, $subscription->id);
         }
 
-        $posts = Post::whereIn('subreddit_id', $subscriptionIds)->take(10)->orderBy('created_at', 'desc')->get();
+        $posts = Post::whereIn('subreddit_id', $subscriptionIds)->take(10)->orderBy($sortBy, 'desc')->get();
 
         return view('subreddits.show')->with('posts', $posts)->with('subscriptions', true);
     }
-
-
 }
