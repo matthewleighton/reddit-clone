@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'SubredditsController@home');
+Route::get('/', 'SubredditsController@all');
 
 Route::get('subscriptions', 'SubredditsController@subscriptions');
 
@@ -43,6 +43,19 @@ Route::get('r/{subreddit}', 'SubredditsController@show');
 Route::get('subscriptions/create/{subreddit}', 'SubscriptionsController@create');
 
 Route::get('subscriptions/destroy/{subreddit}', 'SubscriptionsController@destroy');
+
+
+
+Route::get('{sort}', 'SubredditsController@all')->where('sort', '^(new|top)$' );
+
+Route::get('r/{subreddit}/new', 'SubredditsController@new');
+
+//Route::get('top', 'SubredditsController@top');
+
+Route::get('r/{subreddit}/top', 'SubredditsController@top');
+
+
+
 
 
 

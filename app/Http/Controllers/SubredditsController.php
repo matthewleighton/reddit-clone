@@ -12,9 +12,17 @@ use App\Post;
 
 class SubredditsController extends Controller
 {
-    public function home(Request $request)
+    public function all(Request $request, $sort = 'top')
     {
-    	$user = Auth::user()['name'];
+    	
+               
+        if ($sort == 'top') {
+            $sortAttribute = 'score';
+        } else {
+            $sortAttribute = 'created_at';
+        }
+
+    
 
         // TODO - Figure out a way of using the query string to define the time period to find posts from.
     	// e.g. 24 hours is default, else past week/month/year/all.
@@ -31,7 +39,7 @@ class SubredditsController extends Controller
         */
         /////////////////////
 
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::orderBy($sortAttribute, 'desc')->get();
 
     	return view('subreddits.show')->with('posts', $posts);
     }
@@ -85,9 +93,7 @@ class SubredditsController extends Controller
 
         $posts = Post::whereIn('subreddit_id', $subscriptionIds)->take(10)->orderBy('created_at', 'desc')->get();
 
-        //var_dump($posts);
-
-        return view('subreddits.show')->with('posts', $posts);
+        return view('subreddits.show')->with('posts', $posts)->with('subscriptions', true);
     }
 
 

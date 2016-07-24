@@ -5,7 +5,15 @@
 
 	<div class="view-subreddit-by">
 		<div id="view-by">View by</div>
-		<div class="choices"><a href="#">Top</a> | <a href="#">New</a></div>	
+			<div class="choices">
+				@if (isset($subreddit))
+					<a href="{{ appRoot() }}r/{{ $subreddit['name'] }}/top">Top</a> | <a href="{{ appRoot() }}r/{{ $subreddit['name'] }}/new">New</a>
+				@elseif (isset($subscriptions))
+					<a href="{{ appRoot() }}subscriptions/top">Top</a> | <a href="{{ appRoot() }}subscriptions/new">New</a>
+				@else
+					<a href="{{ appRoot() }}top">Top</a> | <a href="{{ appRoot() }}new">New</a>
+				@endif
+			</div>
 	</div>
 
 	<div id="subreddit-links-area">
@@ -37,7 +45,6 @@
 					<a href='{{ appRoot() }}users/new'>Sign up to subscribe!</a>
 				@endif
 				 <span class="subscriber-count">{{ count($subreddit->users) }} {{ str_plural('reader', count($subreddit->users)) }}</span>
-				
 			</p>
 
 			<div class="list-subscribers">
