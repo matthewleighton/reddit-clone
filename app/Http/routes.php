@@ -57,5 +57,18 @@ Route::get('r/{subreddit}/comments/{post}', 'CommentsController@index');
 Route::get('r/{subreddit}/comments/{post}/{comment}', 'CommentsController@show');
 
 
-
 Route::post('comments/save', 'CommentsController@save');
+
+
+
+
+Route::get('votes/{direction}/{type}/{id}', 'VotesController@submitVote')->where('direction', '^(0|1)$')
+																		 ->where('type', '^(post|comment)$');
+
+
+Route::get('users/confirm', 'UsersController@confirm');
+
+
+//Route::get('votes/downvote/{type}/{id}', 'VotesController@downvote')->where('type', '^(post|comment)$');
+
+//Route::get('votes/remove/{type}/{id}', 'VotesController@upvote')->where('type', '^(post|comment)$');

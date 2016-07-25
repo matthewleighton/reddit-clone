@@ -69,4 +69,10 @@ class UsersController extends Controller
     	Auth::logout();
     	return redirect()->action('SubredditsController@home');
     }
+
+    // Confirm whether the user is logged in. For use in responding to AJAX request.
+    public function confirm()
+    {
+        return Auth::user() ? '1' : '';
+    }
 }

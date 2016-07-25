@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    protected $fillable = ['score'];
+    
     public function user()
     {
     	return $this->belongsTo(User::class);
@@ -24,6 +26,11 @@ class Comment extends Model
     public function children()
     {
     	return $this->hasMany(Comment::class, 'parent_id');
+    }
+
+    public function votes()
+    {
+        return $this->morphMany('App\Vote', 'votable');
     }
 
     public function displayScore()

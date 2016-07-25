@@ -28,8 +28,6 @@ $(document).ready(function() {
 		if (validPostTypes.indexOf(postType) < 0) return;
 		if ($(selectorId).hasClass('selected')) return;
 
-		console.log("test?");
-
 		$(".post-type-selector").removeClass('selected');
 		$(selectorId).addClass('selected');
 
@@ -53,7 +51,6 @@ $(document).ready(function() {
 	});
 
 	$('.subscribe-btn').click(function() {
-		console.log(this);
 		if ($(this).hasClass('unsubscribed')) {
 			console.log("Triggered subscribe function");
 			subscribeToSubreddit(this);
@@ -62,6 +59,31 @@ $(document).ready(function() {
 			unsubscribeFromSubreddit(this);
 		}
 	});
+
+	$('.vote-arrow').click(function() {
+		var element = this;
+		var direction = $(element).hasClass('upvote') ? '1' : '0';
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("GET", rootPath + "users/confirm/", true);
+		xhttp.send();
+
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				if (this.responseText) {
+					submitVote(element, direction);	
+				} else {
+					window.location = rootPath + "users/login";
+				}
+			}
+		}
+	});
+
+	
+
+	
+
+
 });
 
 // Read a page's GET URL variables and return them as an associative array.
@@ -163,4 +185,67 @@ function unsubscribeFromSubreddit(element) {
 	$(element).removeClass('subscribed');
 	$(element).addClass('unsubscribed');
 	$(element).text('subscribe');
+}
+
+// Use a direction of either 1 or 0 to signify an up/down vote.
+function submitVote(element, direction) {
+	var id = $(element).siblings('.vote-id').text();
+	var type = $(element).siblings('.vote-type').text();
+	var newArrowStatus, bothArrows;
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", rootPath + "votes/" + direction + "/" + type + "/" + id, true);
+	xhttp.send();
+
+	changeScore(element, direction);
+
+	direction = direction == '1' ? 'up' : 'down';
+	newArrowStatus = $(element).hasClass('active') ? 'inactive' : 'active';
+	bothArrows = $(element).parent().children('.vote-arrow');
+
+	var directions = ['up', 'down'];
+	for (var i = 0; i < 2; i++) {
+		$(bothArrows[i]).removeClass('active inactive');
+		$(bothArrows[i]).attr('src', rootPath + 'img/inactive-' + directions[i] + 'vote.png');
+	}
+
+	$(element).attr('src', rootPath + 'img/' + newArrowStatus + '-' + direction + 'vote.png');
+
+	$(element).addClass(newArrowStatus);
+}
+
+function changeScore(element, direction) {
+	var containerDiv = $(element).parent();
+	var scoreCounter = $(element).siblings('.vote-counter');
+	var originalScore = parseInt($(scoreCounter).text());
+
+	var arrows = $(containerDiv).children('.vote-arrow');
+	var activeUpvote = $(arrows[0]).hasClass('active') ? true : false;
+	var activeDownvote = $(arrows[1]).hasClass('active') ? true : false;
+	
+	var amount = 0;
+
+	if (activeUpvote) {
+		amount -= 1;
+		if (direction == '0') {
+			amount -= 1;
+		}
+	} else if (activeDownvote) {
+		amount += 1;
+		if (direction == '1') {
+			amount += 1;
+		}
+	} else {
+		if (direction == '1') {
+			amount += 1;
+		} else {
+			amount -= 1;
+		}
+	}
+
+	$(scoreCounter).text(originalScore + amount);
+}
+
+function confirmUser() {
+
 }

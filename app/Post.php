@@ -7,6 +7,8 @@ use DateTime;
 
 class Post extends Model
 {
+	protected $fillable = ['score'];
+
 	public function subreddit()
 	{
 		return $this->belongsTo(Subreddit::class);
@@ -21,6 +23,11 @@ class Post extends Model
 	{
 		return $this->hasMany(Comment::class);
 	}
+
+	public function votes()
+    {
+        return $this->morphMany('App\Vote', 'votable');
+    }
 
 	public function commentsLinkText()
 	{

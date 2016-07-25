@@ -24,4 +24,33 @@ function getSortHref($subreddit, $subscriptions, $sort='top')
 	return appRoot() . $sort;
 }
 
+// Return the appropriate html image tag for an up/downvote arrow with the correct colour.
+function generateVoteArrow($post, $comment, $direction)
+{
+	$upStatus = 'inactive';
+	$downStatus = 'inactive';
+
+	if ($comment) {
+		$object = $comment;
+	} else {
+		$object = $post;
+	}
+
+	if ($votes = $object->votes()->where('user_id', Auth::user()['id'])->first()) {
+		if ($votes['vote_direction']) {
+			$upStatus = 'active';
+		} else {
+			$downStatus = 'active';
+		}
+	}
+
+	$directionStatus = $direction == 'up' ? $upStatus : $downStatus;
+
+	$tag = "<img class='vote-arrow " . $direction . "vote " . $directionStatus . 
+		   "' src='" . appRoot() . "img/" . $directionStatus . "-" . $direction . "vote.png'/>";
+
+	return $tag;
+	// TODO - Confirm that there are no security vulnerabilities by outputing html here.
+}
+
 ?>
