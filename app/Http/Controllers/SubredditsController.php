@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Auth;
+use DateTime;
 
 use App\Subreddit;
 use App\Post;
@@ -14,11 +15,28 @@ class SubredditsController extends Controller
 {
     public function all(Request $request, $sort = 'new')
     {     
-        $sortBy = Post::getSortingOrder($sort);
+        
+        $times = [
+            'hour' => '-1 hour',
+            'day' => '-24 hours',
+            'week' => '-7 days',
+            'month' => '-30 days',
+            'year' => '-1 year',
+            'all' => '-50 years',
+            '' => '-50 years'
+        ];
 
-        $posts = Post::orderBy($sortBy, 'desc')->get();
+        $time = $times[$request->query('t')];
 
-    	return view('subreddits.show')->with('posts', $posts);
+        $today = new DateTime();
+
+        $sortBy = Post::getSortingOrder($sort);        
+
+        $posts = Post::restrictByTime($request->query('t'))->orderBy($sortBy, 'desc')->get();
+        
+    	return view('subreddits.show')->with('posts', $posts)
+                                      ->with('subreddit', false)
+                                      ->with('subscriptions', false);
     }
 
     public function show(Request $request, $subreddit, $sort='new')
@@ -26,10 +44,34 @@ class SubredditsController extends Controller
         $sortBy = Post::getSortingOrder($sort);
 
         $subreddit = Subreddit::where('name', $subreddit)->first();
-        $posts = Post::where('subreddit_id', $subreddit['id'])->take(10)->orderBy($sortBy, 'desc')->get();
+        
+        $posts = Post::restrictByTime($request->query('t'))->where('subreddit_id', $subreddit['id'])
+                                                           ->take(10)->orderBy($sortBy, 'desc')
+                                                           ->get();
 
         return view('subreddits.show')->with('posts', $posts)
-                                      ->with('subreddit', $subreddit);
+                                      ->with('subreddit', $subreddit)
+                                      ->with('subscriptions', false);
+    }
+
+    public function subscriptions(Request $request, $sort='new')
+    {
+        $sortBy = Post::getSortingOrder($sort);
+
+        $subscriptions = Auth::user()->subreddits;
+        $subscriptionIds = [];
+
+        foreach ($subscriptions as $subscription) {
+            array_push($subscriptionIds, $subscription->id);
+        }
+
+        $posts = Post::restrictByTime($request->query('t'))->whereIn('subreddit_id', $subscriptionIds)
+                                                           ->take(10)->orderBy($sortBy, 'desc')
+                                                           ->get();
+
+        return view('subreddits.show')->with('posts', $posts)
+                                      ->with('subscriptions', true)
+                                      ->with('subreddit', false);
     }
 
     public function create()
@@ -57,21 +99,5 @@ class SubredditsController extends Controller
         Auth::user()->subscribeTo($subreddit['id']);
 
         return redirect('r/' . $subreddit['name']);
-    }
-
-    public function subscriptions(Request $request, $sort='new')
-    {
-        $sortBy = Post::getSortingOrder($sort);
-
-        $subscriptions = Auth::user()->subreddits;
-        $subscriptionIds = [];
-
-        foreach ($subscriptions as $subscription) {
-            array_push($subscriptionIds, $subscription->id);
-        }
-
-        $posts = Post::whereIn('subreddit_id', $subscriptionIds)->take(10)->orderBy($sortBy, 'desc')->get();
-
-        return view('subreddits.show')->with('posts', $posts)->with('subscriptions', true);
     }
 }

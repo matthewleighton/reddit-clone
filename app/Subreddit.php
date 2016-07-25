@@ -15,4 +15,9 @@ class Subreddit extends Model
 	{
 		return $this->belongsToMany(User::class);
 	}
+
+	public function getTopSortHref($subreddit, $subscription)
+	{
+		return 'test';
+	}
 }

@@ -99,9 +99,6 @@ h1 {
 .view-by-right {
   float: right; }
 
-#view-by {
-  font-size: 13px; }
-
 /* Forms */
 .user-form {
   margin: 0 auto;
@@ -210,6 +207,26 @@ h1 {
   text-align: center;
   margin: 0 auto;
   margin-top: -10px; }
+
+#view-by {
+  font-size: 13px; }
+
+.sort-top-link {
+  display: inline-block; }
+
+.sort-top-dropdown {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  text-align: left; }
+
+.sort-top-link:hover .sort-top-dropdown {
+  display: block; }
+
+.time-selection-choice {
+  display: block; }
 
 #subreddit-links-area {
   float: left; }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use DateTime;
 
 class Post extends Model
 {
@@ -62,5 +63,28 @@ class Post extends Model
         }
 
         return 'score';
+	}
+
+	public static function restrictByTime($timeQuery)
+	{
+		$times = [
+            'hour' => '-1 hour',
+            'day' => '-24 hours',
+            'week' => '-7 days',
+            'month' => '-30 days',
+            'year' => '-1 year',
+            'all' => '-50 years',
+            '' => '-50 years'
+        ];
+
+        $time = $times[$timeQuery];
+
+        $today = new DateTime();
+       	
+        if (isset($this)) {
+        	return $this->where('created_at', '>', $today->modify($time));
+        }
+
+        return Post::where('created_at', '>', $today->modify($time));
 	}
 }

@@ -58,7 +58,7 @@ class UsersController extends Controller
     	$name = $request->get('name');
 
     	if (Auth::attempt(['name' => $name, 'password' => $request->get('password')])) {
-    		return redirect()->action('SubredditsController@home');
+    		return redirect()->action('SubredditsController@all');
     	} else {
     		return back()->with('name', $name)->with('error', "The password you've entered is inncorrect.");
     	}
