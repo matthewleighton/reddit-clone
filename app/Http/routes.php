@@ -67,8 +67,3 @@ Route::get('votes/{direction}/{type}/{id}', 'VotesController@submitVote')->where
 
 
 Route::get('users/confirm', 'UsersController@confirm');
-
-
-//Route::get('votes/downvote/{type}/{id}', 'VotesController@downvote')->where('type', '^(post|comment)$');
-
-//Route::get('votes/remove/{type}/{id}', 'VotesController@upvote')->where('type', '^(post|comment)$');

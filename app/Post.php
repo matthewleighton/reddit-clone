@@ -113,7 +113,7 @@ class Post extends Model
 			if (strpos($url, '/')) {
 				$url = substr($url, 0, strpos($url, '/'));	
 			}
-			
+
 			return "(" . $url . ")";
 		}
 	}

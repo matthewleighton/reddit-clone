@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="comments-page">
-		@if ($post->textpost && !isset($comment))
+		@if ($post->textpost && !isset($comment) && $post['body'] != '')
 			@section('textpost-body')
 				<div class="textpost-body">{{ $post->body }}</div>
 			@stop

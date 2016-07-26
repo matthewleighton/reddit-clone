@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Input;
 
 use App\Post;
 use App\Subreddit;
+use App\Vote;
 
 use Auth;
 
@@ -47,7 +48,6 @@ class PostsController extends Controller
     		'title' => 'required',
     		'subreddit' => 'required|exists:subreddits,name',
     		'textpost' => 'required',
-    		'body' => 'required_if:textpost,1',
     		'url' => 'required_if:textpost,0|true_url',
     	]);
 
@@ -57,6 +57,8 @@ class PostsController extends Controller
 
     	$post->title = $request->get('title');
     	$post->textpost = $textpost;
+        $post->user_id = Auth::user()['id'];
+        $post->score = 0;
 
     	if ($textpost) {
     		$post->body = $request->get('body');
@@ -64,11 +66,15 @@ class PostsController extends Controller
     		$post->url = $request->get('url');
     	}
 
+
+
         $subredditName = $request->get('subreddit');
 
         $subreddit = Subreddit::where('name', $subredditName)->first();
 
     	$newPost = $subreddit->posts()->save($post);
+
+        Vote::submitVote(1, 'post', $newPost['id']);
 
         return redirect('r/' . $subredditName . '/comments/' . $newPost['id']);
     }
