@@ -101,7 +101,8 @@ return [
             'exists' => 'That subreddit does not exist.'
         ],
         'url' => [
-            'required_if' => 'The url field is required.'
+            'required_if' => 'The url field is required.',
+            'true_url' => 'The given url is not valid.'
         ],
         'body' => [
             'required_if' => 'The text field is required.'

@@ -17,6 +17,10 @@ class AppServiceProvider extends ServiceProvider
         Validator::extend('letters_only', function($attribute, $value, $parameters, $validator) {
             return preg_match('/^[[:alpha:]]+$/', $value);
         });
+
+        Validator::extend('true_url', function($attribute, $value, $parameters, $validator) {
+            return preg_match('/^\b((https?:\/\/www\.)|(https?:\/\/)|(www\.))(\w+\.[a-z.]+)([^ ,\n]*)$/', $value);
+        });
     }
 
     /**

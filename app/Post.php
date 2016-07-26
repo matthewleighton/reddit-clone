@@ -47,8 +47,7 @@ class Post extends Model
 		if ($this['textpost']) {
 			return $this->commentsHref();
 		} else {
-			//TODO - Account for whether the 'https://' is already included in the url.
-			return "https://" . $this['url'];
+			return $this['url'];
 		}
 	}
 

@@ -37,12 +37,18 @@ class PostsController extends Controller
             return redirect()->action('SubredditsController@home');
         }
 
+        if ($url = $request->get('url')) {
+            if (substr($url, 0, 7) != 'http://' && substr($url, 0, 8) != 'https://') {
+                $request->merge(['url' => 'https://' . ($request->get('url'))]);
+            }
+        }
+
         $this->validate($request, [
     		'title' => 'required',
     		'subreddit' => 'required|exists:subreddits,name',
     		'textpost' => 'required',
     		'body' => 'required_if:textpost,1',
-    		'url' => 'required_if:textpost,0',
+    		'url' => 'required_if:textpost,0|true_url',
     	]);
 
     	$textpost = $request->get('textpost');
