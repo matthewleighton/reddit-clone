@@ -13,6 +13,36 @@ use App\Post;
 
 class SubredditsController extends Controller
 {
+    public function index(Request $request)
+    {
+        $sortTypes = [
+            'name' => 'name',
+            'posts' => 'posts',
+            'subscribers' => 'users'
+        ];
+
+        if (!$request->get('sort')) {
+            $sortBy = 'name';
+        } else {
+            $sortBy = $sortTypes[$request->get('sort')];
+        }
+    
+        $subreddits = Subreddit::get();
+
+        if ($sortBy == 'name') {
+            $subreddits = $subreddits->sortBy('name');
+        } else {
+            $subreddits = $subreddits->sortBy(function($subreddit) use (&$sortBy)
+            {
+                return $subreddit[$sortBy]->count();
+            });
+            
+            $subreddits = $subreddits->reverse();
+        }
+
+        return view('subreddits.index')->with('subreddits', $subreddits);
+    }
+
     public function all(Request $request, $sort = 'new')
     {     
         
@@ -86,7 +116,7 @@ class SubredditsController extends Controller
     public function save(Request $request)
     {
         // Remove trailing whitespace before validation.
-        $request->merge(['name' => trim($request->get('name'))]);
+        $request->merge(['name' => strtolower(trim($request->get('name')))]);
 
         $this->validate($request, [
             'name' => 'required|max:255|letters_only'

@@ -16,7 +16,7 @@ $link-color: #369;
 }
 
 a {
-	
+	color: $link-color;	
 	text-decoration: none;
 }
 
@@ -72,6 +72,13 @@ h1 {
 
 .view-by-right {
 	float: right;
+}
+
+.header-logo {
+	position: relative;
+	margin-right: 5px;
+	top: -8px;
+	vertical-align: top;
 }
 
 /* Forms */
@@ -285,11 +292,13 @@ h1 {
 
 .subscribe-btn {
 	color: white;
+	display: inline-block;
 	font-size: 14px;
 	font-weight: bold;
-	margin-left: 10px;
-	padding: 3px 20px;
-	width: 100px;
+	padding: 4px 20px;
+	text-align: center;
+	width: 75px;
+	
 }
 
 .unsubscribed {
@@ -455,6 +464,35 @@ h1 {
 	padding: 5px 10px;
 
 	a {
+		color: $link-color;
+	}
+}
+
+/* Subreddit List Page */
+
+#subreddits-list {
+	margin: 0 auto;
+	width: 500px;
+
+	th {
+		font-weight: bold;
+		text-decoration: underline;
+		padding-bottom: 10px;
+		position: relative;
+		right: 15px;
+		color: $link-color;
+	}
+}
+
+.subreddit-listing {
+	padding-bottom: 200px;
+
+	td {
+		padding-bottom: 20px;
+	}
+
+	.subreddit-name {
+		font-weight: bold;
 		color: $link-color;
 	}
 }

@@ -34,6 +34,8 @@ Route::post('posts/new', 'PostsController@save');
 
 
 
+Route::get('subreddits', 'SubredditsController@index');
+
 Route::get('subreddits/new', 'SubredditsController@create');
 
 Route::post('subreddits/new', 'SubredditsController@save');

@@ -164,7 +164,7 @@ function maximizeComment(element) {
 }
 
 function subscribeToSubreddit(element) {
-	var subredditId = $('#subscription-id').text();
+	var subredditId = $(element).siblings('#subscription-id').text();
 
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", rootPath + "subscriptions/create/" + subredditId, true);
@@ -176,7 +176,7 @@ function subscribeToSubreddit(element) {
 }
 
 function unsubscribeFromSubreddit(element) {
-	var subredditId = $('#subscription-id').text();
+	var subredditId = $(element).siblings('#subscription-id').text();
 
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", rootPath + "subscriptions/destroy/" + subredditId, true);

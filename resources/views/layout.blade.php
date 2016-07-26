@@ -15,7 +15,7 @@
 	<div id="wrapper">
 		<div class="navbar">
 			<div class="navbar-left navbar-element">
-				<a href="{{ appRoot() }}" id="header-logo">Laravel Reddit Clone</a> 
+				<a href="{{ appRoot() }}" id="header-logo"><img src="{{ appRoot() }}img/logo.png" class="header-logo">Laravel Reddit Clone</a> 
 				@if (isset($subreddit) && $subreddit)
 					<a href="{{ appRoot() }}r/{{ $subreddit['name'] }}" class="subreddit-title">{{ $subreddit['name'] }}</a>
 				@endif

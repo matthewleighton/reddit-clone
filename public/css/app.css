@@ -48,6 +48,7 @@ table {
   font-family: 'Cabin', sans-serif; }
 
 a {
+  color: #369;
   text-decoration: none; }
 
 /*a:visited {
@@ -98,6 +99,12 @@ h1 {
 
 .view-by-right {
   float: right; }
+
+.header-logo {
+  position: relative;
+  margin-right: 5px;
+  top: -8px;
+  vertical-align: top; }
 
 /* Forms */
 .user-form {
@@ -265,11 +272,12 @@ h1 {
 
 .subscribe-btn {
   color: white;
+  display: inline-block;
   font-size: 14px;
   font-weight: bold;
-  margin-left: 10px;
-  padding: 3px 20px;
-  width: 100px; }
+  padding: 4px 20px;
+  text-align: center;
+  width: 75px; }
 
 .unsubscribed {
   background-color: #5ea96a; }
@@ -401,6 +409,26 @@ h1 {
   margin-bottom: 10px;
   padding: 5px 10px; }
   .permalink-comment-alert a {
+    color: #369; }
+
+/* Subreddit List Page */
+#subreddits-list {
+  margin: 0 auto;
+  width: 500px; }
+  #subreddits-list th {
+    font-weight: bold;
+    text-decoration: underline;
+    padding-bottom: 10px;
+    position: relative;
+    right: 15px;
+    color: #369; }
+
+.subreddit-listing {
+  padding-bottom: 200px; }
+  .subreddit-listing td {
+    padding-bottom: 20px; }
+  .subreddit-listing .subreddit-name {
+    font-weight: bold;
     color: #369; }
 
 /*# sourceMappingURL=app.css.map */

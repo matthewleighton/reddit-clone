@@ -5,7 +5,6 @@
 
 	<div class="view-subreddit-by">
 		<div id="view-by">View by</div>
-			
 			<div class="sort-top-link">
 				<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}" >Top&#x25BE;</a>
 				<div class="sort-top-dropdown">
@@ -18,20 +17,30 @@
 				</div>
 			</div>	| 
 			<a href="{{ getSortHref($subreddit, $subscriptions, 'new') }}" class="sort-new-link">New</a>
-			
 	</div>
+
+	@if($subscriptions && !count(Auth::user()['subreddits']))
+		<span class="empty-warning">You aren't subscribed to any <a href='{{ appRoot() }}subreddits'>subreddits</a>.</span>
+	@endif
 
 	<div id="subreddit-links-area">
 		@foreach ($posts as $post)
 			@include('posts.post-title')
 		@endforeach
+
+		@if (!count($posts))
+			<span class="empty-warning">There aren't any posts here.</span>
+		@endif
 	</div>
+
+
 
 	<div id="new-content-links">
 		<ul>
 			<li><a href="{{ appRoot() }}posts/new">Submit a new link</a></li>
 			<li><a href="{{ appRoot() }}posts/new?selfpost=true">Submit a new text post</a></li>
 			<li><a href="{{ appRoot() }}subreddits/new">Create your own subreddit</a></li>
+			<li><a href="{{ appRoot() }}subreddits">View all subreddits</a></li>
 		</ul>
 	</div>
 
