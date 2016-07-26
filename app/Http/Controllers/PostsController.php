@@ -66,8 +66,6 @@ class PostsController extends Controller
     		$post->url = $request->get('url');
     	}
 
-
-
         $subredditName = $request->get('subreddit');
 
         $subreddit = Subreddit::where('name', $subredditName)->first();

@@ -30,11 +30,7 @@ function generateVoteArrow($post, $comment, $direction)
 	$upStatus = 'inactive';
 	$downStatus = 'inactive';
 
-	if ($comment) {
-		$object = $comment;
-	} else {
-		$object = $post;
-	}
+	$object = $comment ? $comment : $post;
 
 	if ($votes = $object->votes()->where('user_id', Auth::user()['id'])->first()) {
 		if ($votes['vote_direction']) {
@@ -50,7 +46,18 @@ function generateVoteArrow($post, $comment, $direction)
 		   "' src='" . appRoot() . "img/" . $directionStatus . "-" . $direction . "vote.png'/>";
 
 	return $tag;
-	// TODO - Confirm that there are no security vulnerabilities by outputing html here.
 }
+
+function getVoteCounterStatus($post, $comment)
+{
+	$object = $comment ? $comment : $post;
+
+	if ($votes = $object->votes()->where('user_id', Auth::user()['id'])->first()) {
+		return $votes['vote_direction'] == '1' ? 'upvoted' : 'downvoted';
+	}
+
+	return '';
+}
+
 
 ?>
