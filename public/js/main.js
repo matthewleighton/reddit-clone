@@ -205,8 +205,6 @@ function submitVote(element, direction) {
 		return;
 	}
 
-	console.log("applying new vote");
-
 	// Next we apply the new vote.
 	var votableId = $(element).siblings('.vote-id').text();
 	var votableType = $(element).siblings('.vote-type').text();
@@ -237,7 +235,6 @@ function submitVote(element, direction) {
 function checkVoteCancelation(arrows, direction) {
 	if (direction == '1' && $(arrows[0]).hasClass('active') ||
 		direction == '0' && $(arrows[1]).hasClass('active')) {
-		console.log("Canceling vote.");
 		return true;
 	}
 
@@ -257,8 +254,7 @@ function resetScore(arrows, voteCounter) {
 	var activeUpvote = $(arrows[0]).hasClass('active') ? true : false;
 	var activeDownvote = $(arrows[1]).hasClass('active') ? true : false;
 
-	console.log(arrows);
-
+	var amount = 0;
 	if (activeUpvote) {
 		amount -= 1;
 	} else if (activeDownvote) {
