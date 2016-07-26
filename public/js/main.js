@@ -189,63 +189,84 @@ function unsubscribeFromSubreddit(element) {
 
 // Use a direction of either 1 or 0 to signify an up/down vote.
 function submitVote(element, direction) {
-	var id = $(element).siblings('.vote-id').text();
-	var type = $(element).siblings('.vote-type').text();
-	var newArrowStatus, bothArrows;
+	var container = $(element).parent();
+	var arrows = $(container).children('.vote-arrow');
+	var voteCounter = $(container).children('.vote-counter');
 
-	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", rootPath + "votes/" + direction + "/" + type + "/" + id, true);
-	xhttp.send();
+	// First we remove any pre-existing vote.
+	// If cancelingVote is true this indicates that we're just removing a previous vote,
+	// and do not need to add the new one.
+	var cancelingVote = checkVoteCancelation(arrows, direction);
+	resetScore(arrows, voteCounter);
+	resetArrowColors(arrows);
+	$(voteCounter).removeClass('upvoted downvoted');
 
-	changeScore(element, direction);
-
-	direction = direction == '1' ? 'up' : 'down';
-	newArrowStatus = $(element).hasClass('active') ? 'inactive' : 'active';
-	bothArrows = $(element).parent().children('.vote-arrow');
-
-	var directions = ['up', 'down'];
-	for (var i = 0; i < 2; i++) {
-		$(bothArrows[i]).removeClass('active inactive');
-		$(bothArrows[i]).attr('src', rootPath + 'img/inactive-' + directions[i] + 'vote.png');
+	if (cancelingVote) {
+		return;
 	}
 
-	$(element).attr('src', rootPath + 'img/' + newArrowStatus + '-' + direction + 'vote.png');
+	console.log("applying new vote");
 
-	$(element).addClass(newArrowStatus);
+	// Next we apply the new vote.
+	var votableId = $(element).siblings('.vote-id').text();
+	var votableType = $(element).siblings('.vote-type').text();
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", rootPath + "votes/" + direction + "/" + votableType + "/" + votableId, true);
+	xhttp.send();
+
+	var voteAmount, voteWord;
+	if (direction == '1') {
+		voteAmount = 1;
+		voteWord = 'up';
+
+	} else {
+		voteAmount = -1;
+		voteWord = 'down';
+	}
+
+	var originalScore = parseInt($(voteCounter).text());
+	$(voteCounter).text(originalScore + voteAmount);
+	$(voteCounter).addClass(voteWord + 'voted');
+
+	$(element).attr('src',rootPath + 'img/active-' + voteWord + 'vote.png');
+	$(element).addClass('active');
 }
 
-function changeScore(element, direction) {
-	var containerDiv = $(element).parent();
-	var scoreCounter = $(element).siblings('.vote-counter');
-	var originalScore = parseInt($(scoreCounter).text());
+// Return true if we're just canceling an existing vote, rather than adding a new one.
+function checkVoteCancelation(arrows, direction) {
+	if (direction == '1' && $(arrows[0]).hasClass('active') ||
+		direction == '0' && $(arrows[1]).hasClass('active')) {
+		console.log("Canceling vote.");
+		return true;
+	}
 
-	var arrows = $(containerDiv).children('.vote-arrow');
+	return false;
+}
+
+function resetArrowColors(arrows) {
+	var directions = ['up', 'down'];
+	for (var i = 0; i < 2; i++) {
+		$(arrows[i]).removeClass('active inactive');
+		$(arrows[i]).attr('src', rootPath + 'img/inactive-' + directions[i] + 'vote.png');
+	}
+
+}
+
+function resetScore(arrows, voteCounter) {
 	var activeUpvote = $(arrows[0]).hasClass('active') ? true : false;
 	var activeDownvote = $(arrows[1]).hasClass('active') ? true : false;
-	
-	var amount = 0;
+
+	console.log(arrows);
 
 	if (activeUpvote) {
 		amount -= 1;
-		if (direction == '0') {
-			amount -= 1;
-		}
 	} else if (activeDownvote) {
 		amount += 1;
-		if (direction == '1') {
-			amount += 1;
-		}
-	} else {
-		if (direction == '1') {
-			amount += 1;
-		} else {
-			amount -= 1;
-		}
 	}
 
-	$(scoreCounter).text(originalScore + amount);
-}
-
-function confirmUser() {
-
+	if (amount != 0) {
+		var originalScore = parseInt($(voteCounter).text());
+		$(voteCounter).text(originalScore + amount);
+	}
 }

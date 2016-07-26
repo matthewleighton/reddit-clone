@@ -168,11 +168,18 @@ h1 {
   margin-bottom: 5px; }
 
 .vote-counter {
-  font-weight: bold;
-  display: inline-block;
-  position: relative;
   bottom: 3px;
+  color: #ACACAC;
+  display: inline-block;
+  font-weight: bold;
+  position: relative;
   text-align: center; }
+
+.upvoted {
+  color: #FF8B60; }
+
+.downvoted {
+  color: #9494FF; }
 
 .post-link {
   font-size: 16px; }

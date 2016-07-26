@@ -38,7 +38,7 @@ class UsersController extends Controller
     	$user->save();
 
     	if (Auth::attempt(['name' => $request->get('name'), 'password' => $request->get('password')])) {
-    		return redirect()->action('SubredditsController@home');
+    		return redirect()->action('SubredditsController@all');
     	} else {
     		return back();
     	}
@@ -47,7 +47,7 @@ class UsersController extends Controller
     public function loginForm()
     {
     	if (Auth::user()) {
-            return redirect()->action('SubredditsController@home');
+            return redirect()->action('SubredditsController@all');
         }
     	
     	return view('users.loginForm');
@@ -67,7 +67,7 @@ class UsersController extends Controller
     public function logout()
     {
     	Auth::logout();
-    	return redirect()->action('SubredditsController@home');
+    	return redirect()->action('SubredditsController@all');
     }
 
     // Confirm whether the user is logged in. For use in responding to AJAX request.

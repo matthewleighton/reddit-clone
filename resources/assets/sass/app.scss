@@ -156,11 +156,20 @@ h1 {
 }
 
 .vote-counter {
-	font-weight: bold;
-	display: inline-block;
-	position: relative;
 	bottom: 3px;
+	color: #ACACAC;
+	display: inline-block;
+	font-weight: bold;
+	position: relative;
 	text-align: center;
+}
+
+.upvoted {
+	color: $upvote;
+}
+
+.downvoted {
+	color: $downvote;
 }
 
 .post-link {
