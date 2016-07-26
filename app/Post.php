@@ -93,4 +93,28 @@ class Post extends Model
 
         return Post::where('created_at', '>', $today->modify($time));
 	}
+
+	public function linkInfo()
+	{
+		if ($this->textpost) {
+			return "(self." . $this->subreddit['name'] . ")";
+		} else {
+			$url = $this['url'];
+
+			// Remove 'www.'
+			if (strpos($url, '://www.')) {
+				$url = str_replace('www.', '', $url);
+			}
+
+			// Remove 'https://'
+			$url = substr(strstr($url, '/'), 2);
+
+			// Remove everything after '/' after domain.
+			if (strpos($url, '/')) {
+				$url = substr($url, 0, strpos($url, '/'));	
+			}
+			
+			return "(" . $url . ")";
+		}
+	}
 }

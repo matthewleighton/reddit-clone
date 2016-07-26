@@ -39,7 +39,7 @@ class PostsController extends Controller
 
         if ($url = $request->get('url')) {
             if (substr($url, 0, 7) != 'http://' && substr($url, 0, 8) != 'https://') {
-                $request->merge(['url' => 'https://' . ($request->get('url'))]);
+                $request->merge(['url' => 'http://' . ($request->get('url'))]);
             }
         }
 
