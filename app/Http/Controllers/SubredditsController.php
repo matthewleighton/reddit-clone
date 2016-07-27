@@ -21,11 +21,7 @@ class SubredditsController extends Controller
             'subscribers' => 'users'
         ];
 
-        if (!$request->get('sort')) {
-            $sortBy = 'name';
-        } else {
-            $sortBy = $sortTypes[$request->get('sort')];
-        }
+        $sortBy = !$request->get('sort') ? 'name' : $sortTypes[$request->get('sort')];
     
         $subreddits = Subreddit::get();
 
@@ -45,24 +41,13 @@ class SubredditsController extends Controller
 
     public function all(Request $request, $sort = 'new')
     {     
-        
-        $times = [
-            'hour' => '-1 hour',
-            'day' => '-24 hours',
-            'week' => '-7 days',
-            'month' => '-30 days',
-            'year' => '-1 year',
-            'all' => '-50 years',
-            '' => '-50 years'
-        ];
-
-        $time = $times[$request->query('t')];
-
+        $sortBy = Post::getSortingOrder($sort);
         $today = new DateTime();
+        $time = Post::getConstraintTime($request->get('t'));
 
-        $sortBy = Post::getSortingOrder($sort);        
-
-        $posts = Post::restrictByTime($request->query('t'))->orderBy($sortBy, 'desc')->get();
+        $posts = Post::where('created_at', '>', $today->modify($time))
+            ->orderBy($sortBy, 'desc')
+            ->paginate(15);
         
     	return view('subreddits.show')->with('posts', $posts)
                                       ->with('subreddit', false)
@@ -71,14 +56,17 @@ class SubredditsController extends Controller
 
     public function show(Request $request, $subreddit, $sort='new')
     {
-        $sortBy = Post::getSortingOrder($sort);
-
         $subreddit = Subreddit::where('name', $subreddit)->first();
         
-        $posts = Post::restrictByTime($request->query('t'))->where('subreddit_id', $subreddit['id'])
-                                                           ->take(10)->orderBy($sortBy, 'desc')
-                                                           ->get();
+        $sortBy = Post::getSortingOrder($sort);
+        $time = Post::getConstraintTime($request->get('t'));
+        $today = new DateTime();
 
+        $posts = Post::where('created_at', '>', $today->modify($time))
+            ->where('subreddit_id', $subreddit['id'])
+            ->orderBy($sortBy, 'desc')
+            ->paginate(15);
+        
         return view('subreddits.show')->with('posts', $posts)
                                       ->with('subreddit', $subreddit)
                                       ->with('subscriptions', false);
@@ -86,18 +74,21 @@ class SubredditsController extends Controller
 
     public function subscriptions(Request $request, $sort='new')
     {
-        $sortBy = Post::getSortingOrder($sort);
-
         $subscriptions = Auth::user()->subreddits;
         $subscriptionIds = [];
-
+        
         foreach ($subscriptions as $subscription) {
             array_push($subscriptionIds, $subscription->id);
         }
 
-        $posts = Post::restrictByTime($request->query('t'))->whereIn('subreddit_id', $subscriptionIds)
-                                                           ->take(10)->orderBy($sortBy, 'desc')
-                                                           ->get();
+        $sortBy = Post::getSortingOrder($sort);
+        $time = Post::getConstraintTime($request->get('t'));
+        $today = new DateTime();
+
+        $posts = Post::whereIn('subreddit_id', $subscriptionIds)
+            ->where('created_at', '>', $today->modify($time))
+            ->orderBy($sortBy, 'desc')
+            ->paginate(15);
 
         return view('subreddits.show')->with('posts', $posts)
                                       ->with('subscriptions', true)

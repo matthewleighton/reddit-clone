@@ -19,18 +19,19 @@
 			<a href="{{ getSortHref($subreddit, $subscriptions, 'new') }}" class="sort-new-link">New</a>
 	</div>
 
-	@if($subscriptions && !count(Auth::user()['subreddits']))
-		<span class="empty-warning">You aren't subscribed to any <a href='{{ appRoot() }}subreddits'>subreddits</a>.</span>
-	@endif
-
 	<div id="subreddit-links-area">
 		@foreach ($posts as $post)
 			@include('posts.post-title')
 		@endforeach
 
-		@if (!count($posts))
+		@if($subscriptions && !count(Auth::user()['subreddits']))
+			<span class="empty-warning">You aren't subscribed to any <a href='{{ appRoot() }}subreddits'>subreddits</a>.</span>
+		@elseif (!count($posts))
 			<span class="empty-warning">There aren't any posts here.</span>
 		@endif
+
+		{!! createPaginationLink($posts, 0) !!}
+		{!! createPaginationLink($posts, 1) !!}
 	</div>
 
 

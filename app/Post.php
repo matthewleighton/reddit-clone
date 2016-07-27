@@ -61,37 +61,11 @@ class Post extends Model
 		return $this->created_at->diffForHumans();
 	}
 
+
 	// Return a table to sort results by, based on the given url parameter.
 	public static function getSortingOrder($sort)
 	{
-		if ($sort == 'new') {
-            return 'created_at';
-        }
-
-        return 'score';
-	}
-
-	public static function restrictByTime($timeQuery)
-	{
-		$times = [
-            'hour' => '-1 hour',
-            'day' => '-24 hours',
-            'week' => '-7 days',
-            'month' => '-30 days',
-            'year' => '-1 year',
-            'all' => '-50 years',
-            '' => '-50 years'
-        ];
-
-        $time = $times[$timeQuery];
-
-        $today = new DateTime();
-       	
-        if (isset($this)) {
-        	return $this->where('created_at', '>', $today->modify($time));
-        }
-
-        return Post::where('created_at', '>', $today->modify($time));
+		return $sort == 'new' ? 'created_at' : 'score';
 	}
 
 	public function linkInfo()
@@ -117,4 +91,19 @@ class Post extends Model
 			return "(" . $url . ")";
 		}
 	}
+
+	public static function getConstraintTime($queryTime)
+    {
+        $times = [
+            'hour' => '-1 hour',
+            'day' => '-24 hours',
+            'week' => '-7 days',
+            'month' => '-30 days',
+            'year' => '-1 year',
+            'all' => '-50 years',
+            '' => '-50 years'
+        ];
+
+        return isset($times[$queryTime]) ? $times[$queryTime] : '-50 years';
+    }
 }
