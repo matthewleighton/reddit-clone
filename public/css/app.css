@@ -45,7 +45,7 @@ table {
   margin: 0 auto;
   max-width: 1360px;
   width: 90%;
-  font-family: 'Cabin', sans-serif; }
+  font-family: verdana, sans-serif; }
 
 a {
   color: #369;
@@ -55,7 +55,7 @@ a {
 	color: blue;
 }*/
 h1 {
-  font-size: 22px;
+  font-size: 19px;
   text-align: center; }
 
 .wide-field {
@@ -146,12 +146,20 @@ h1 {
 .input-title {
   font-weight: bold; }
 
+.remember-user {
+  text-align: left; }
+  .remember-user input {
+    background: #fcfff4;
+    cursor: pointer; }
+  .remember-user label {
+    cursor: pointer; }
+
 /* Post Title */
 .post-title-div {
   display: block; }
 
 .link-info {
-  font-size: 11px;
+  font-size: 10px;
   color: #888; }
 
 .votes-section {
@@ -171,6 +179,8 @@ h1 {
 .post-section {
   display: inline-block;
   margin-bottom: 10px; }
+  .post-section * {
+    margin-bottom: 4px; }
 
 .vote-arrow {
   cursor: pointer;
@@ -199,7 +209,8 @@ h1 {
   color: #551a8b; }
 
 .submission-info {
-  font-size: 10px; }
+  font-size: 10px;
+  color: #888; }
   .submission-info a {
     color: #369; }
 
@@ -273,7 +284,7 @@ h1 {
 .subscribe-btn {
   color: white;
   display: inline-block;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: bold;
   padding: 4px 20px;
   text-align: center;
@@ -305,20 +316,21 @@ h1 {
   min-width: 350px;
   width: 50%; }
   #post-type-selector-area .selected {
-    background-color: #7D9CA7; }
+    background-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed; }
 
 .post-type-selector {
-  background-color: #9BC2CF;
+  background-color: #EBEBE4;
   border: 1px solid #6c8790;
   border-radius: 4px;
-  color: white;
+  color: black;
   cursor: pointer;
   display: inline-block;
-  font-weight: bold;
+  font-size: 14px;
   padding: 10px 20px; }
 
 .post-type-selector:hover {
-  background-color: #8baeba; }
+  box-shadow: 0 0 10px #9ecaed; }
 
 #post-creation-form {
   margin: 0 auto;
@@ -335,6 +347,7 @@ h1 {
   background-color: #FAFAFA;
   border: 1px solid #AAAAAA;
   display: inline-block;
+  font-size: 14px;
   margin: 5px 0;
   max-width: 840px;
   overflow: hidden;
@@ -371,6 +384,7 @@ h1 {
   font-size: 10px; }
 
 .comment-body {
+  font-size: 14px;
   padding: 7px 5px; }
 
 .comment-actions {
@@ -416,14 +430,16 @@ h1 {
   margin: 0 auto;
   width: 500px; }
   #subreddits-list th {
+    color: #369;
+    font-size: 14px;
     font-weight: bold;
-    text-decoration: underline;
     padding-bottom: 10px;
     position: relative;
     right: 15px;
-    color: #369; }
+    text-decoration: underline; }
 
 .subreddit-listing {
+  font-size: 13px;
   padding-bottom: 200px; }
   .subreddit-listing td {
     padding-bottom: 20px; }

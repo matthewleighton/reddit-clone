@@ -19,7 +19,12 @@
 			<input class="wide-field" type="email" name="email" placeholder="Email" value="{{ old('email') }}">
 			<p class="user-error">{{ $errors->first('email') }}</p>
 
-			
+			<p class="remember-user">
+				<input type="checkbox" name="remember" id="remember-user">
+				<label for="remember-user">Remember me</label>
+			</p>
+
+			<br/>
 			<button type="submit" class="user-submit">Sign up</button>
 		</form>
 	</div>

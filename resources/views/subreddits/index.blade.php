@@ -12,12 +12,15 @@
 					<td class="subreddit-name"><a href="{{ appRoot() }}r/{{ $sub['name'] }}" class="subreddit-name">r/{{ $sub['name'] }}</a></td>
 					<td class="post-count">{{ count($sub['posts']) }} {{ str_plural('post', count($sub['posts'])) }}</td>
 					<td class="subscriber-count">{{ count($sub['users']) }} {{ str_plural('subscriber', count($sub['users'])) }}</td>
-					<td>@if (Auth::user()->isSubscribedTo($sub['id']))
-							<a href="javascript:void(0)" class="subscribe-btn subscribed">unsubscribe</a>
-						@else
-							<a href="javascript:void(0)" class="subscribe-btn unsubscribed">subscribe</a>
+					<td>
+						@if (Auth::user())
+							@if (Auth::user()->isSubscribedTo($sub['id']))
+								<a href="javascript:void(0)" class="subscribe-btn subscribed">unsubscribe</a>
+							@else
+								<a href="javascript:void(0)" class="subscribe-btn unsubscribed">subscribe</a>
+							@endif
+							<span id="subscription-id" hidden>{{ $sub['id'] }}</span>
 						@endif
-						<span id="subscription-id" hidden>{{ $sub['id'] }}</span>
 					</td>
 				</tr>
 			@endforeach

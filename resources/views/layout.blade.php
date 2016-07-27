@@ -8,8 +8,8 @@
 	<script src="{{ appRoot() }}js/main.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="{{ appRoot() }}css/app.css">
-	<link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">
-
+	<!--<link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">-->
+	<link rel="shortcut icon" type="image/png" href="{{ appRoot() }}img/logo.png"/>
 </head>
 <body>
 	<div id="wrapper">

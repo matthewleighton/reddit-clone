@@ -7,11 +7,11 @@
 		<div id="post-type-selector-area">
 			<div class="post-type-selector selected" id="link-selector">
 				<p hidden>link</p>
-				Sharing a link
+				Share a link
 			</div>
 			<div class="post-type-selector" id="text-selector">
 				<p hidden>text</p>
-				Creating a text post
+				Create a text post
 			</div>
 		</div>
 
@@ -31,7 +31,7 @@
 			</div>
 			
 			<div class="post-type-field" id="text-input">
-				<textarea class="wide-field" name="body" placeholder="Text">{{ old('body') }}</textarea><br/>
+				<textarea class="wide-field" name="body" placeholder="Text (optional)">{{ old('body') }}</textarea><br/>
 				<p class="user-error">{{ $errors->first('body') }}</p>	
 			</div>
 			

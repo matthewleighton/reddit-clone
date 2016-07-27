@@ -37,7 +37,9 @@ class UsersController extends Controller
 
     	$user->save();
 
-    	if (Auth::attempt(['name' => $request->get('name'), 'password' => $request->get('password')])) {
+        $remember = $request->get('remember');
+
+    	if (Auth::attempt(['name' => $request->get('name'), 'password' => $request->get('password')], $remember)) {
     		return redirect()->action('SubredditsController@all');
     	} else {
     		return back();
@@ -56,8 +58,11 @@ class UsersController extends Controller
     public function login(Request $request)
     {    	
     	$name = $request->get('name');
+        $remember = $request->get('remember');
 
-    	if (Auth::attempt(['name' => $name, 'password' => $request->get('password')])) {
+        //dd($remember);
+
+    	if (Auth::attempt(['name' => $name, 'password' => $request->get('password')], $remember)) {
     		return redirect()->action('SubredditsController@all');
     	} else {
     		return back()->with('name', $name)->with('error', "The password you've entered is inncorrect.");
