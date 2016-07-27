@@ -66,31 +66,33 @@ function createPaginationLink($object, $direction)
 	$currentPage = $object->currentPage();
 
 	$lastPage = $object->lastPage();
-	if (!($currentPage == '1' && !$direction) && !($currentPage == $lastPage && $direction)) {
-		$url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
-	
-		$pageQueryIndex = strpos($url, 'page=');
-		$pageQueryIndex = $pageQueryIndex ? $pageQueryIndex + 5 : 0;
-		
-		$queryExists = strpos($url, '?');
-		$newPage = $direction ? $currentPage + 1 : $currentPage - 1;
-
-		if ($pageQueryIndex) {
-			$numberLength = strlen($currentPage);
-			$url = substr_replace($url, $newPage, $pageQueryIndex, $numberLength);
-		} else {
-			$url .= !$queryExists ? '?' : '&';
-			$url .= 'page=' . $newPage;
-		}
-
-		$direction = $direction == '1' ? 'Next &#8680;' : '&#8678; Previous';
-
-		// Class to signify the 'next' next paginator link on page 1, as it needs additional margin
-		// to make up for the lack of 'previous' link.
-		$firstPaginator = $object->currentPage() == '1' ? 'first-paginator' : '';
-
-		return "<a href='" . $url . "' class='pagination-link " . $firstPaginator . "'>" . $direction . "</a>";
+	if (($currentPage == '1' && !$direction) || ($currentPage == $lastPage && $direction) || $object->total() == 0) {
+		return '';
 	}
+
+	$url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+	
+	$pageQueryIndex = strpos($url, 'page=');
+	$pageQueryIndex = $pageQueryIndex ? $pageQueryIndex + 5 : 0;
+	
+	$queryExists = strpos($url, '?');
+	$newPage = $direction ? $currentPage + 1 : $currentPage - 1;
+
+	if ($pageQueryIndex) {
+		$numberLength = strlen($currentPage);
+		$url = substr_replace($url, $newPage, $pageQueryIndex, $numberLength);
+	} else {
+		$url .= !$queryExists ? '?' : '&';
+		$url .= 'page=' . $newPage;
+	}
+
+	$direction = $direction == '1' ? 'Next &#8680;' : '&#8678; Previous';
+
+	// Class to signify the 'next' next paginator link on page 1, as it needs additional margin
+	// to make up for the lack of 'previous' link.
+	$firstPaginator = $object->currentPage() == '1' ? 'first-paginator' : '';
+
+	return "<a href='" . $url . "' class='pagination-link " . $firstPaginator . "'>" . $direction . "</a>";
 }
 
 ?>
