@@ -9,5 +9,8 @@
     "gulp": "^3.9.1",
     "gulp-concat-css": "^2.3.0",
     "laravel-elixir": "^5.0.0"
+  },
+  "dependencies": {
+    "easy-autocomplete": "^1.3.5"
   }
 }

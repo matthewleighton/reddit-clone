@@ -201,10 +201,6 @@ function submitVote(element, direction) {
 	resetArrowColors(arrows);
 	$(voteCounter).removeClass('upvoted downvoted');
 
-	if (cancelingVote) {
-		return;
-	}
-
 	// Next we apply the new vote.
 	var votableId = $(element).siblings('.vote-id').text();
 	var votableType = $(element).siblings('.vote-type').text();
@@ -212,6 +208,10 @@ function submitVote(element, direction) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", rootPath + "votes/" + direction + "/" + votableType + "/" + votableId, true);
 	xhttp.send();
+
+	if (cancelingVote) {
+		return;
+	}
 
 	var voteAmount, voteWord;
 	if (direction == '1') {
