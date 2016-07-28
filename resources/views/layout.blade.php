@@ -4,11 +4,13 @@
 	<meta charset="UTF-8">
 	<title>Laravel Reddit Clone</title>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+	
+	<script src="{{ appRoot() }}js/jquery-3.1.0.min.js"></script>
 	<script src="{{ appRoot() }}js/main.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="{{ appRoot() }}css/app.css">
-	<!--<link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet">-->
 	<link rel="shortcut icon" type="image/png" href="{{ appRoot() }}img/logo.png"/>
 </head>
 <body>
