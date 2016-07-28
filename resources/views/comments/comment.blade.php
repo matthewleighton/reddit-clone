@@ -4,7 +4,7 @@
 		<input type="hidden" name="post_id" value="{{ $post['id'] }}">
 		<input type="hidden" name="parent_id" value="{{ $comment['id'] }}">
 
-		@include('votes-section')
+		<span class="comment-votes">@include('votes-section')</span>
 		<div class="comment-main">
 			<div class="comment-info">
 				<span class="minimize-btn">[-]</span><span class='maximize-btn'>[+]</span>

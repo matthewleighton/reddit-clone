@@ -51,9 +51,6 @@ a {
   color: #369;
   text-decoration: none; }
 
-/*a:visited {
-	color: blue;
-}*/
 h1 {
   font-size: 19px;
   text-align: center; }
@@ -158,6 +155,9 @@ h1 {
 .post-title-div {
   display: block; }
 
+.post-top {
+  margin-bottom: 100px; }
+
 .link-info {
   font-size: 10px;
   color: #888; }
@@ -165,12 +165,12 @@ h1 {
 .votes-section {
   bottom: 10px;
   display: inline-block;
-  margin-right: 5px;
   margin-top: 5px;
   overflow: hidden;
   position: relative;
   text-align: center;
-  vertical-align: top; }
+  vertical-align: top;
+  width: 46px; }
 
 .hidden-votes {
   height: 1px;
@@ -178,7 +178,8 @@ h1 {
 
 .post-section {
   display: inline-block;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  width: calc(100% - 60px); }
   .post-section * {
     margin-bottom: 4px; }
 
@@ -186,7 +187,8 @@ h1 {
   cursor: pointer;
   display: block;
   margin: 0 auto;
-  margin-bottom: 5px; }
+  margin-bottom: 5px;
+  text-align: center; }
 
 .vote-counter {
   bottom: 3px;
@@ -219,7 +221,8 @@ h1 {
   display: block;
   font-size: 10px;
   font-weight: bold;
-  margin-top: 3px; }
+  margin-top: 3px;
+  width: 85px; }
 
 /* Subreddit show page */
 .subreddit-title {
@@ -235,7 +238,8 @@ h1 {
 .view-subreddit-by {
   text-align: center;
   margin: 0 auto;
-  margin-top: -10px; }
+  margin-top: -10px;
+  margin-bottom: 10px; }
 
 #view-by {
   font-size: 13px; }
@@ -258,7 +262,11 @@ h1 {
   display: block; }
 
 #subreddit-links-area {
-  float: left; }
+  float: left;
+  max-width: calc(100% - 300px); }
+
+#subreddit-view-right {
+  float: right; }
 
 #new-content-links {
   float: right;
@@ -273,12 +281,11 @@ h1 {
 
 /* Sidebar */
 .sidebar {
-  border: 1px solid black;
   clear: right;
   float: right;
   font-size: 15px;
-  margin-top: 20px;
-  width: 300px; }
+  margin-top: 30px;
+  width: 275px; }
 
 .sidebar-title {
   font-size: 24px;
@@ -287,6 +294,9 @@ h1 {
   text-transform: capitalize; }
   .sidebar-title a {
     color: black; }
+
+.subscription-area {
+  padding-left: 40px; }
 
 .subscribe-btn {
   color: white;
@@ -377,18 +387,26 @@ h1 {
   padding-top: 5px; }
 
 .comment-main {
-  display: inline-block; }
+  display: inline-block;
+  position: relative;
+  right: 15px; }
 
-.minimize-btn {
+.minimize-btn, .maximize-btn {
   cursor: pointer; }
 
+.minimize-btn:hover, .maximize-btn:hover {
+  text-decoration: underline; }
+
 .maximize-btn {
-  cursor: pointer;
   display: none; }
 
 .comment-info, .comment-actions {
   color: #888;
   font-size: 10px; }
+
+.comment-votes {
+  position: relative;
+  top: 5px; }
 
 .comment-body {
   font-size: 14px;
