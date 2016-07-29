@@ -2,7 +2,7 @@
 	@include('votes-section')
 	<div class="post-section">
 		<p><a href="{{ $post->postHref() }}" class="post-link">{{ $post->title }}</a> <span class="link-info">{{ $post->linkInfo() }}</span></p>
-		<p class="submission-info">Submitted {{ $post->timeSincePosted() }} by <a href="#">{{ $post->user['name'] }}</a> to <a href="{{ appRoot() }}r/{{ $post->subreddit['name'] }}" > {{ $post->subreddit['name'] }}</a></p>
+		<p class="submission-info">Submitted {{ $post->timeSincePosted() }} by <a href="{{ appRoot() }}user/{{ $post->user['name'] }}">{{ $post->user['name'] }}</a> to <a href="{{ appRoot() }}r/{{ $post->subreddit['name'] }}" > {{ $post->subreddit['name'] }}</a></p>
 
 		@yield('textpost-body')
 		

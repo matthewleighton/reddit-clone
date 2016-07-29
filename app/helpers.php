@@ -21,7 +21,7 @@ function getSortHref($subreddit, $subscriptions, $sort='top')
 		return appRoot() . "subscriptions/" . $sort;
 	}
 
-	return appRoot() . $sort;
+	return $sort;
 }
 
 // Return the appropriate html image tag for an up/downvote arrow with the correct colour.

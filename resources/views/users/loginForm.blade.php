@@ -4,7 +4,7 @@
 	<div class="user-form">
 		<h1 class="user-header">Login</h1>
 
-		<form method="POST" action="/users/login">
+		<form method="POST" action="{{ appRoot() }}users/login">
 			<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 			
 			<input class="wide-field" type="text" name="name" placeholder="Username" value="{{ session('name') }}" required autofocus>

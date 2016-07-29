@@ -6,12 +6,12 @@
 			<div class="sort-top-link">
 				<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}" >Top&#x25BE;</a>
 				<div class="sort-top-dropdown">
-					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}/?t=hour" class="time-selection-choice">Past hour</a>
-					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}/?t=day" class="time-selection-choice">Past 24 hours</a>
-					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}/?t=week" class="time-selection-choice">Past week</a>
-					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}/?t=month" class="time-selection-choice">Past month</a>
-					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}/?t=year" class="time-selection-choice">Past year</a>
-					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}/?t=all" class="time-selection-choice">All time</a>
+					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}?t=hour" class="time-selection-choice">Past hour</a>
+					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}?t=day" class="time-selection-choice">Past 24 hours</a>
+					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}?t=week" class="time-selection-choice">Past week</a>
+					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}?t=month" class="time-selection-choice">Past month</a>
+					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}?t=year" class="time-selection-choice">Past year</a>
+					<a href="{{ getSortHref($subreddit, $subscriptions, 'top') }}?t=all" class="time-selection-choice">All time</a>
 				</div>
 			</div>	| 
 			<a href="{{ getSortHref($subreddit, $subscriptions, 'new') }}" class="sort-new-link">New</a>

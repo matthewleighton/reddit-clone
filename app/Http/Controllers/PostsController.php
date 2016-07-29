@@ -45,7 +45,7 @@ class PostsController extends Controller
         }
 
         $this->validate($request, [
-    		'title' => 'required',
+    		'title' => 'required|max:255',
     		'subreddit' => 'required|exists:subreddits,name',
     		'textpost' => 'required',
     		'url' => 'required_if:textpost,0|true_url',

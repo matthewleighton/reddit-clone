@@ -4,7 +4,7 @@
 	<div class="user-form">
 		<h1 class="user-header">New User</h1>
 
-		<form method="POST" action="/users/create">
+		<form method="POST" action="{{ appRoot() }}users/create">
 			<input class="wide-field" type="hidden" name="_token" value="{{{ csrf_token() }}}" />
 			
 			<input class="wide-field" type="text" name="name" placeholder="Choose a username" value="{{ old('name') }}" autofocus autocomplete="off">

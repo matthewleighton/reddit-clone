@@ -55,6 +55,9 @@ h1 {
   font-size: 19px;
   text-align: center; }
 
+#coming-soon {
+  text-align: center; }
+
 .wide-field {
   border: 1px solid #ccc;
   border-radius: 4px;

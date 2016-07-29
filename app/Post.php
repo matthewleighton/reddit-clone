@@ -53,7 +53,7 @@ class Post extends Model
 
 	public function commentsHref()
 	{
-		return '/r/' . $this->subreddit['name'] . '/comments/' . $this['id'];
+		return approot() . 'r/' . $this->subreddit['name'] . '/comments/' . $this['id'];
 	}
 
 	public function timeSincePosted()

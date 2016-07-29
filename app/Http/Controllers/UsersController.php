@@ -11,6 +11,11 @@ use Auth;
 
 class UsersController extends Controller
 {
+    public function show()
+    {
+        return view('users.show');
+    }
+
     public function create()
     {
     	if (Auth::user()) {

@@ -62,10 +62,10 @@ Route::get('r/{subreddit}/comments/{post}/{comment}', 'CommentsController@show')
 Route::post('comments/save', 'CommentsController@save');
 
 
-
-
 Route::get('votes/{direction}/{type}/{id}', 'VotesController@submitVote')->where('direction', '^(0|1)$')
 																		 ->where('type', '^(post|comment)$');
 
 
 Route::get('users/confirm', 'UsersController@confirm');
+
+Route::get('user/{name}', 'UsersController@show');
