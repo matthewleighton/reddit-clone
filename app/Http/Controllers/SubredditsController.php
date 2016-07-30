@@ -98,7 +98,7 @@ class SubredditsController extends Controller
     public function create()
     {
         if (!Auth::user()) {
-            return redirect()->action('UsersController@login');
+            return redirect()->action('UsersController@login', ['redirect' => 'subreddits/new']);
         }
 
         return view('subreddits.create');   

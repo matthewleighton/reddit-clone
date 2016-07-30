@@ -6,6 +6,7 @@
 
 		<form method="POST" action="{{ appRoot() }}users/login">
 			<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
+			<input type="hidden" name="redirect" value="{{ $redirect }}"/>
 			
 			<input class="wide-field" type="text" name="name" placeholder="Username" value="{{ session('name') }}" required autofocus>
 			<input class="wide-field" type="password" name="password" placeholder="Password" required>
@@ -22,6 +23,6 @@
 		<p id="login-error">{{ session('error') }}</p>
 		
 		<br/>
-		<p>Don't have an account? <a href="{{ appRoot() }}users/new">Create one here.</a></p>
+		<p>Don't have an account? <a href="{{ appRoot() }}users/new?redirect={{$redirect}}">Create one here.</a></p>
 	</div>
 @stop

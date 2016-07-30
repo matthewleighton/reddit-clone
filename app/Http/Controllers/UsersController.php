@@ -16,13 +16,13 @@ class UsersController extends Controller
         return view('users.show');
     }
 
-    public function create()
+    public function create(Request $request)
     {
     	if (Auth::user()) {
             return redirect()->action('SubredditsController@home');
         }    	
 
-    	return view('users.create');
+    	return view('users.create')->with('redirect', $request->get('redirect'));
     }
 
     public function save(Request $request)
@@ -45,30 +45,30 @@ class UsersController extends Controller
         $remember = $request->get('remember');
 
     	if (Auth::attempt(['name' => $request->get('name'), 'password' => $request->get('password')], $remember)) {
-    		return redirect()->action('SubredditsController@all');
+    		$redirect = $request->get('redirect');
+            return $redirect ? redirect($redirect) : redirect()->action('SubredditsController@all');
     	} else {
     		return back();
     	}
     }
 
-    public function loginForm()
+    public function loginForm(Request $request)
     {
     	if (Auth::user()) {
             return redirect()->action('SubredditsController@all');
         }
     	
-    	return view('users.loginForm');
+    	return view('users.loginForm')->with('redirect', $request->query('redirect'));
     }
 
     public function login(Request $request)
     {    	
     	$name = $request->get('name');
         $remember = $request->get('remember');
-
-        //dd($remember);
+        $redirect = $request->get('redirect');
 
     	if (Auth::attempt(['name' => $name, 'password' => $request->get('password')], $remember)) {
-    		return redirect()->action('SubredditsController@all');
+    		return $redirect ? redirect($redirect) : redirect()->action('SubredditsController@all');
     	} else {
     		return back()->with('name', $name)->with('error', "The password you've entered is inncorrect.");
     	}
