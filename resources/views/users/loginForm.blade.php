@@ -7,6 +7,10 @@
 		<form method="POST" action="{{ appRoot() }}users/login">
 			<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 			<input type="hidden" name="redirect" value="{{ $redirect }}"/>
+
+			@if ($selfpost)
+				<input type="hidden" name="selfpost" value="{{ $selfpost }}"/>
+			@endif
 			
 			<input class="wide-field" type="text" name="name" placeholder="Username" value="{{ session('name') }}" required autofocus>
 			<input class="wide-field" type="password" name="password" placeholder="Password" required>

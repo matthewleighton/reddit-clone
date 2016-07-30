@@ -19,7 +19,8 @@ class PostsController extends Controller
     public function create(Request $request)
     {
     	if (!Auth::user()) {
-            return redirect()->action('UsersController@login');
+            return redirect()->action('UsersController@login', ['redirect' => 'posts/new',
+                                                                'selfpost' => $request->query('selfpost')]);
         }
 
         // Used to set the default value of the textpost hidden field.

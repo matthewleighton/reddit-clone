@@ -20,7 +20,7 @@ class UsersController extends Controller
     {
     	if (Auth::user()) {
             return redirect()->action('SubredditsController@home');
-        }    	
+        }
 
     	return view('users.create')->with('redirect', $request->get('redirect'));
     }
@@ -58,7 +58,8 @@ class UsersController extends Controller
             return redirect()->action('SubredditsController@all');
         }
     	
-    	return view('users.loginForm')->with('redirect', $request->query('redirect'));
+    	return view('users.loginForm')->with('redirect', $request->query('redirect'))
+                                      ->with('selfpost', $request->query('selfpost'));
     }
 
     public function login(Request $request)
@@ -68,7 +69,10 @@ class UsersController extends Controller
         $redirect = $request->get('redirect');
 
     	if (Auth::attempt(['name' => $name, 'password' => $request->get('password')], $remember)) {
-    		return $redirect ? redirect($redirect) : redirect()->action('SubredditsController@all');
+
+            $query = $request->get('selfpost') ? '?selfpost=' . $request->get('selfpost') : '';
+
+    		return $redirect ? redirect($redirect . $query)->with(array('test' => 'true!')) : redirect()->action('SubredditsController@all');
     	} else {
     		return back()->with('name', $name)->with('error', "The password you've entered is inncorrect.");
     	}
