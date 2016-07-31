@@ -1,5 +1,5 @@
 <div class="comment-container {{ $comment->addChildClass() }}">
-	<form class="form-closed" method="POST" action="/comments/save" >
+	<form class="form-closed" method="POST" action="{{ appRoot() }}comments/save" >
 		<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 		<input type="hidden" name="post_id" value="{{ $post['id'] }}">
 		<input type="hidden" name="parent_id" value="{{ $comment['id'] }}">

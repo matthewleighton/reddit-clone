@@ -21,7 +21,7 @@
 			@endif
 
 			@if (Auth::user() && !isset($comment))
-				<form method="POST" action="/comments/save">
+				<form method="POST" action="{{ appRoot() }}comments/save">
 					<input type="hidden" name="_token" value="{{{ csrf_token() }}}"/>
 					<input type="hidden" name="post_id" value="{{ $post['id'] }}">
 

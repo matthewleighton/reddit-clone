@@ -392,7 +392,8 @@ h1 {
 .comment-main {
   display: inline-block;
   position: relative;
-  right: 15px; }
+  right: 15px;
+  width: calc(100% - 60px); }
 
 .minimize-btn, .maximize-btn {
   cursor: pointer; }
